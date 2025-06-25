@@ -1,0 +1,247 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
+public class CrabEnemyAI : MonoBehaviour, IDamageable
+{
+    private enum State { Patrol, Idle, Attack }
+
+    [Header("References")]
+    [SerializeField] private Transform player;
+
+    [Header("Stats")]
+    [Tooltip("Total health for the crab enemy.")]
+    public int maxHealth = 100;
+    private int currentHealth;
+    private bool isDead = false;
+
+    [Header("Stomp Settings")]
+    [Tooltip("Vertical bounce force applied to the player when stomping.")]
+    public float stompBounceForce = 10f;
+
+    [Header("Patrol Settings")]
+    [Tooltip("Waypoints the crab will walk between.")]
+    public Transform[] patrolPoints;
+    [Tooltip("Horizontal move speed.")]
+    public float moveSpeed = 2f;
+
+    [Header("Patrol Idle Timing")]
+    [Tooltip("Time between idle stops.")]
+    public float patrolIdleIntervalMin = 3f;
+    public float patrolIdleIntervalMax = 6f;
+    [Tooltip("How long the idle stop lasts.")]
+    public float idleDuration = 1.5f;
+
+    [Header("Attack Settings")]
+    [Tooltip("Distance at which the crab will attack.")]
+    public float attackRange = 1.5f;
+    [Tooltip("How long the attack animation/state lasts.")]
+    public float attackDuration = 1f;
+
+    // Components & internal state
+    private Animator       anim;
+    private SpriteRenderer sr;
+    private Rigidbody2D    rb;
+    private Collider2D     collider2d;
+    private State          state               = State.Patrol;
+    private int            currentPatrolIndex  = 0;
+    private float          stateTimer          = 0f;
+    private float          nextPatrolIdleTime  = 0f;
+    private float          moveDirection       = 0f;
+
+    void Start()
+    {
+        anim            = GetComponent<Animator>();
+        sr              = GetComponent<SpriteRenderer>();
+        rb              = GetComponent<Rigidbody2D>();
+        collider2d      = GetComponent<Collider2D>();
+        currentHealth   = maxHealth;
+
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        PickNextPatrolIdleTime();
+    }
+
+    void Update()
+    {
+        if (isDead || player == null || patrolPoints.Length < 2)
+            return;
+
+        float distToPlayer = Vector2.Distance(transform.position, player.position);
+
+        switch (state)
+        {
+            case State.Patrol: PatrolUpdate(distToPlayer); break;
+            case State.Idle:   IdleUpdate(distToPlayer);   break;
+            case State.Attack: AttackUpdate(distToPlayer); break;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isDead) return;
+
+        // Apply horizontal velocity; leave Y velocity for gravity
+        Vector2 vel = rb.linearVelocity;
+        vel.x = moveDirection * moveSpeed;
+        rb.linearVelocity = vel;
+    }
+
+    #region State Logic
+
+    private void PatrolUpdate(float dist)
+    {
+        anim.SetBool("isWalking", true);
+
+        // Determine next patrol target and face it
+        Vector2 target = patrolPoints[currentPatrolIndex].position;
+        moveDirection = Mathf.Sign(target.x - transform.position.x);
+        sr.flipX = (moveDirection < 0f);
+
+        // Advance patrol if reached
+        if (Mathf.Abs(transform.position.x - target.x) < 0.05f)
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+
+        // Idle timer
+        nextPatrolIdleTime -= Time.deltaTime;
+        if (nextPatrolIdleTime <= 0f)
+        {
+            EnterIdle();
+            return;
+        }
+
+        // Spot player -> Attack
+        if (dist <= attackRange)
+            EnterAttack();
+    }
+
+    private void IdleUpdate(float dist)
+    {
+        moveDirection = 0f;
+        stateTimer -= Time.deltaTime;
+
+        if (!isDead && dist <= attackRange)
+        {
+            EnterAttack();
+            return;
+        }
+
+        if (stateTimer <= 0f)
+            EnterPatrol();
+    }
+
+    private void AttackUpdate(float dist)
+    {
+        moveDirection = 0f;
+        // Face player
+        sr.flipX = (player.position.x < transform.position.x);
+
+        stateTimer -= Time.deltaTime;
+        if (stateTimer <= 0f)
+            EnterPatrol();
+    }
+
+    #endregion
+
+    #region State Transitions
+
+    private void EnterPatrol()
+    {
+        PickNextPatrolIdleTime();
+        anim.SetBool("isWalking", true);
+        state = State.Patrol;
+    }
+
+    private void EnterIdle()
+    {
+        moveDirection = 0f;
+        stateTimer = idleDuration;
+        anim.SetTrigger("Idle");
+        anim.SetBool("isWalking", false);
+        state = State.Idle;
+    }
+
+    private void EnterAttack()
+    {
+        moveDirection = 0f;
+        stateTimer = attackDuration;
+        anim.SetTrigger("Attack");
+        anim.SetBool("isWalking", false);
+        // Face player immediately
+        sr.flipX = (player.position.x < transform.position.x);
+        state = State.Attack;
+    }
+
+    private void PickNextPatrolIdleTime()
+    {
+        nextPatrolIdleTime = Random.Range(patrolIdleIntervalMin, patrolIdleIntervalMax);
+    }
+
+    #endregion
+
+    #region Damage & Death
+
+    /// <summary>
+    /// Call this to damage the crab (e.g. from sword or stomp).
+    /// </summary>
+    public void TakeDamage(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth -= amount;
+        Debug.Log($"Crab took {amount} damage, current health: {currentHealth}");
+        if (currentHealth > 0)
+        {
+            anim.SetTrigger("Hurt");
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        anim.SetTrigger("Death");
+        rb.simulated = false;
+        rb.linearVelocity = Vector2.zero;
+        //collider2d.enabled = false;
+        //rb.linearVelocity = Vector2.zero;
+        this.enabled = false;
+    }
+
+    #endregion
+
+    #region Stomp Detection
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isDead) return;
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            float playerY = collision.transform.position.y;
+            if (playerY > transform.position.y + 0.5f)
+            {
+                // Stomp kills crab
+                TakeDamage(25);
+                // Bounce player
+                var playerRb = collision.rigidbody;
+                if (playerRb != null)
+                    playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, stompBounceForce);
+            }
+        }
+    }
+
+    #endregion
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+}
