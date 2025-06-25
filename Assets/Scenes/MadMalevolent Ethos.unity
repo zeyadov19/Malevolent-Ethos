@@ -1036,6 +1036,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256030837861833183, guid: c179540ae9cd6de40befa0f6556cf54f, type: 3}
+      propertyPath: stompBounceForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256030837861833183, guid: c179540ae9cd6de40befa0f6556cf54f, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 567349203}
