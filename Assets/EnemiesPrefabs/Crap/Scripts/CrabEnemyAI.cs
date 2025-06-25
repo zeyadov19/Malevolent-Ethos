@@ -225,7 +225,7 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
         if (collision.gameObject.CompareTag("Player"))
         {
             float playerY = collision.transform.position.y;
-            if (playerY > transform.position.y + 0.5f)
+            if (playerY > transform.position.y + 0.8f)
             {
                 // Stomp kills crab
                 TakeDamage(25);
