@@ -353,8 +353,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0033239573, y: 0.000019416213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48925415, y: 0.49567345}
-    oldSize: {x: 0.24, y: 0.35}
+    pivot: {x: 0.60067105, y: 0.50713414}
+    oldSize: {x: 0.18, y: 0.34}
     newSize: {x: 0.18, y: 0.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -393,8 +393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   attackHitBox: {fileID: 1603102408}
-  rightPosition: {x: 0.12, y: 0}
-  leftPosition: {x: -0.12, y: 0}
+  rightPosition: {x: 0.06, y: 0}
+  leftPosition: {x: -0.3, y: 0}
   damage: 25
 --- !u!1 &519420028
 GameObject:
@@ -951,7 +951,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.15578254, y: 0.012114286}
+  m_Offset: {x: 0.15578254, y: 0.0067543164}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -961,7 +961,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.33236048, y: 0.39428413}
+  m_Size: {x: 0.33236048, y: 0.29780382}
   m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
