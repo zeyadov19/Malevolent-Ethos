@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class CrabEnemyAI : MonoBehaviour, IDamageable
+public class SlimeEnemyAI : MonoBehaviour, IDamageable
 {
     private enum State { Patrol, Idle, Attack }
 
@@ -190,7 +190,6 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
         if (isDead) return;
 
         currentHealth -= amount;
-        Debug.Log($"Crab took {amount} damage, current health: {currentHealth}");
         if (currentHealth > 0)
         {
             anim.SetTrigger("Hurt");
@@ -207,8 +206,6 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
         anim.SetTrigger("Death");
         rb.simulated = false;
         rb.linearVelocity = Vector2.zero;
-        //collider2d.enabled = false;
-        //rb.linearVelocity = Vector2.zero;
         this.enabled = false;
     }
 
@@ -223,34 +220,20 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        // Did the player stomp us from above?
-        float playerY = collision.transform.position.y;
-        if (playerY > transform.position.y + 0.8f)
+        // Player ran into us — deal contact damage
+        if (ps != null)
         {
-            // Stomp kills crab
-            TakeDamage(25);
-            // Bounce player
-            Rigidbody2D playerRb = collision.rigidbody;
-            if (playerRb != null)
-                playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, stompBounceForce);
+            ps.TakeDamage(contactDamage);
         }
-        else
-        {
-            // Player ran into us — deal contact damage
-            if (ps != null)
-            {
-                ps.TakeDamage(contactDamage);
-                Debug.Log($"Player took {contactDamage} contact damage from crab.");
-            }
 
-            // Optional: knock the player back a bit
-                Rigidbody2D playerRb = collision.rigidbody;
-            if (playerRb != null)
-                playerRb.linearVelocity = new Vector2(
-                    (collision.transform.position.x < transform.position.x ? -1 : 1) * stompBounceForce,
-                    playerRb.linearVelocity.y
-                );
-        }
+        // Optional: knock the player back a bit
+            Rigidbody2D playerRb = collision.rigidbody;
+        if (playerRb != null)
+            playerRb.linearVelocity = new Vector2(
+                (collision.transform.position.x < transform.position.x ? -1 : 1) * stompBounceForce,
+                playerRb.linearVelocity.y
+            );
+
     }
 
     #endregion

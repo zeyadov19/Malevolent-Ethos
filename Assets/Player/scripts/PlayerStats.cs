@@ -42,6 +42,7 @@ public class PlayerStats : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+        Debug.Log($"Player took {damage} damage, current health: {currentHealth}");
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -72,6 +73,7 @@ public class PlayerStats : MonoBehaviour
         if (isDead) return;
 
         currentHealth += amount;
+        Debug.Log($"Player healed {amount}, current health: {currentHealth}");
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;

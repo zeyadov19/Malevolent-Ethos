@@ -13,9 +13,6 @@ public class SwordAttack : MonoBehaviour
     public Vector2 rightPosition = new Vector2(0.12f, 0f);
     public Vector2 leftPosition = new Vector2(-0.12f, 0f);
 
-    [Header("Damage")]
-    public int damage = 25;
-
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
@@ -58,15 +55,6 @@ public class SwordAttack : MonoBehaviour
         else
         {
             attackHitBox.localPosition = rightPosition;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            // Uncomment when you have an enemy damage system
-            // collision.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 }
