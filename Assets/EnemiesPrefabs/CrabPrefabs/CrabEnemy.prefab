@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 663964264935678462}
   - component: {fileID: 742838782035910914}
   m_Layer: 0
-  m_Name: Crab_Full_FX_0
+  m_Name: CrabEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
