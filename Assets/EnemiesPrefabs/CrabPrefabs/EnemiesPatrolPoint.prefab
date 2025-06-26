@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096835588122747306}
   m_Layer: 0
-  m_Name: CrapPatrolPoints
+  m_Name: EnemiesPatrolPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

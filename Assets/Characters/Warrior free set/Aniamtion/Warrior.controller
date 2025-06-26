@@ -150,10 +150,10 @@ AnimatorStateTransition:
   m_TransitionOffset: 0.006961286
   m_ExitTime: 0.74999994
   m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1107 &-4318224155033396118
 AnimatorStateMachine:
   serializedVersion: 6
