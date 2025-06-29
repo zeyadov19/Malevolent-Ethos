@@ -4,60 +4,41 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Health Settings")]
+    [Header("Health")]
     public int maxHealth = 100;
-    [HideInInspector] public int currentHealth;
+    [HideInInspector]
+    public int currentHealth;
 
-    [Header("Regeneration Settings")]
-    public float regenInterval = 3f;
-    public int regenAmount = 1;
-    private float regenTimer;
-
-    [Header("Invincibility Settings")]
+    [Header("Invincibility")]
     public float invincibilityDuration = 3f;
     public float flashInterval = 0.1f;
 
-    [Header("Knockback Settings")]
-    [Tooltip("Horizontal and vertical velocity applied on damage.")]
-    public Vector2 knockbackVelocity = new Vector2(5f, 5f);
-    [Tooltip("How long the player is locked out of movement.")]
-    public float knockbackLockDuration = 0.2f;
+    [Header("Knockback Impulse")]
+    [Tooltip("Horizontal and vertical impulse applied on damage.")]
+    public Vector2 knockbackImpulse = new Vector2(5f, 5f);
 
     [Header("Death")]
+    [Tooltip("Time to wait before disabling after death animation.")]
+    public float deathDelay = 1f;
     public bool isDead = false;
 
-    private Animator       animator;
     private Rigidbody2D    rb;
     private SpriteRenderer sr;
-    private PlayerMovement pm;
-    private Color originalColor;
+    private Animator       animator;
+    private Color          originalColor;
     private bool           isInvincible = false;
 
     void Awake()
     {
-        rb            = GetComponent<Rigidbody2D>();
-        sr            = GetComponent<SpriteRenderer>();
-        pm = GetComponent<PlayerMovement>();
-        animator      = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         originalColor = sr.color;
     }
 
     void Start()
     {
         currentHealth = maxHealth;
-        regenTimer    = regenInterval;
-    }
-
-    void Update()
-    {
-        if (isDead || isInvincible) return;
-
-        regenTimer -= Time.deltaTime;
-        if (regenTimer <= 0f)
-        {
-            RegenerateHealth();
-            regenTimer = regenInterval;
-        }
     }
 
     public void TakeDamage(int damage)
@@ -65,36 +46,28 @@ public class PlayerStats : MonoBehaviour
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
-        Debug.Log($"Player took {damage} damage, current health: {currentHealth}");
+        Debug.Log($"Player took {damage} damage, health now {currentHealth}");
 
-        // ── FIXED KNOCKBACK DIRECTION ──
-        // push *forward* in the direction the sprite is facing
-        float dir = sr.flipX ? -1f : 1f;
-        rb.linearVelocity = new Vector2(dir * knockbackVelocity.x,
-                                  knockbackVelocity.y);
+        // ➊ Vertical impulse via AddForce
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        rb.AddForce(new Vector2(0f, knockbackImpulse.y),
+            ForceMode2D.Impulse);
 
-        // lock movement
+        // ➋ Horizontal residual via movement script
+        var pm = GetComponent<PlayerMovement>();
         if (pm != null)
-            pm.isKnockedBack = true;
-        StartCoroutine(EndKnockback(pm, knockbackLockDuration));
+        {
+            float dir = sr.flipX ? -1f : 1f;
+            pm.knockbackResidualX = dir * knockbackImpulse.x;
+        }
 
         if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
+            StartCoroutine(Die());
         else
         {
             animator.SetTrigger("Hurt");
             StartCoroutine(InvincibilityFlash());
         }
-    }
-
-    private IEnumerator EndKnockback(PlayerMovement pm, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (pm != null)
-            pm.isKnockedBack = false;
     }
 
     private IEnumerator InvincibilityFlash()
@@ -111,28 +84,20 @@ public class PlayerStats : MonoBehaviour
             timer += flashInterval * 2f;
         }
 
-        sr.color = originalColor;
         isInvincible = false;
+        sr.color = originalColor;
     }
 
-    void RegenerateHealth()
-    {
-        if (currentHealth < maxHealth)
-            currentHealth += regenAmount;
-    }
-
-    void Die()
+    private IEnumerator Die()
     {
         isDead = true;
         animator.SetBool("isDead", true);
-        //pm.enabled = false; 
-        
-    }
+        yield return new WaitForSeconds(deathDelay);
 
-    public void Heal(int amount)
-    {
-        if (isDead) return;
-        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log($"Player healed {amount}, current health: {currentHealth}");
+        // disable player
+        var pm = GetComponent<PlayerMovement>();
+        if (pm != null) pm.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        rb.simulated = false;
     }
 }
