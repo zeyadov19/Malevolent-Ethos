@@ -906,18 +906,19 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 548446473}
   - {fileID: 1553000680}
-  moveSpeed: 2
+  patrolSpeed: 2
+  chaseSpeed: 5
   patrolIdleIntervalMin: 3
   patrolIdleIntervalMax: 6
   idleDuration: 1.5
   chaseRange: 6
-  explodeRange: 1.5
+  explodeRange: 2
   explodeCountdown: 3
-  flashInterval: 0.2
-  explosionRadius: 4
-  explodeDamage: 50
-  explosionKnockback: 8
-  explosionUpwardKnockback: 5
+  flashInterval: 0.1
+  explosionRadius: 5
+  explodeDamage: 10
+  explosionKnockback: 12
+  explosionUpwardKnockback: 12
   deathDelay: 0.5
 --- !u!212 &753984821
 SpriteRenderer:

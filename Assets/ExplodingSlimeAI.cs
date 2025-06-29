@@ -21,8 +21,12 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     [Header("Patrol Settings")]
     [Tooltip("Waypoints for patrolling.")]
     public Transform[] patrolPoints;
-    [Tooltip("Horizontal speed when patrolling or chasing.")]
-    public float moveSpeed = 2f;
+    [Tooltip("Horizontal speed when patrolling.")]
+    public float patrolSpeed = 2f;
+
+    [Header("Chase Settings")]
+    [Tooltip("Horizontal speed when chasing or during countdown.")]
+    public float chaseSpeed = 5f;
 
     [Header("Idle Settings")]
     [Tooltip("Min/Max time between patrol idles.")]
@@ -90,9 +94,9 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         float dist = Vector2.Distance(transform.position, player.position);
         switch (state)
         {
-            case State.Patrol:         PatrolUpdate(dist);         break;
-            case State.Idle:           IdleUpdate(dist);           break;
-            case State.Chase:          ChaseUpdate(dist);          break;
+            case State.Patrol:          PatrolUpdate(dist);         break;
+            case State.Idle:            IdleUpdate(dist);           break;
+            case State.Chase:           ChaseUpdate(dist);          break;
             case State.ExplodeCountdown: ExplodeCountdownUpdate(dist); break;
         }
     }
@@ -101,13 +105,14 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
 
-        // Apply horizontal movement for Patrol/Chase/ExplodeCountdown
-        if (state == State.Patrol || state == State.Chase || state == State.ExplodeCountdown)
-        {
-            Vector2 v = rb.linearVelocity;
-            v.x = moveDirection * moveSpeed;
-            rb.linearVelocity = v;
-        }
+        // Choose speed based on state
+        float speed = patrolSpeed;
+        if (state == State.Chase || state == State.ExplodeCountdown)
+            speed = chaseSpeed;
+
+        Vector2 v = rb.linearVelocity;
+        v.x = moveDirection * speed;
+        rb.linearVelocity = v;
     }
 
     #region State Logic
@@ -115,8 +120,6 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     private void PatrolUpdate(float dist)
     {
         anim.SetBool("isWalking", true);
-
-        // Face and move toward current waypoint
         Vector2 target = patrolPoints[patrolIndex].position;
         moveDirection = Mathf.Sign(target.x - transform.position.x);
         sr.flipX = (moveDirection < 0);
@@ -124,7 +127,6 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         if (Mathf.Abs(transform.position.x - target.x) < 0.1f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
 
-        // Maybe idle
         nextIdleTime -= Time.deltaTime;
         if (nextIdleTime <= 0f)
         {
@@ -132,7 +134,6 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
             return;
         }
 
-        // See player?
         if (dist <= chaseRange)
             EnterChase();
     }
@@ -142,7 +143,6 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         anim.SetBool("isWalking", false);
         moveDirection = 0f;
 
-        // Interrupt to chase
         if (dist <= chaseRange)
         {
             EnterChase();
@@ -157,12 +157,9 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     private void ChaseUpdate(float dist)
     {
         anim.SetBool("isWalking", true);
-
-        // Face & chase player
         moveDirection = Mathf.Sign(player.position.x - transform.position.x);
         sr.flipX = (moveDirection < 0);
 
-        // Start explode countdown?
         if (dist <= explodeRange)
             EnterExplodeCountdown();
     }
@@ -170,12 +167,9 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     private void ExplodeCountdownUpdate(float dist)
     {
         anim.SetBool("isWalking", true);
-
-        // Continue chasing during countdown
         moveDirection = Mathf.Sign(player.position.x - transform.position.x);
         sr.flipX = (moveDirection < 0);
 
-        // Flash gray
         float cycle = Mathf.PingPong(Time.time, flashInterval * 2f);
         sr.color = (cycle < flashInterval) ? Color.gray : originalColor;
 
@@ -212,7 +206,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     private void EnterExplodeCountdown()
     {
         stateTimer = explodeCountdown;
-        anim.SetTrigger("Attack");  // assume 'Attack' plays a countdown or tense animation
+        anim.SetTrigger("Attack");
         state = State.ExplodeCountdown;
     }
 
@@ -227,38 +221,24 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
 
     private void Explode()
     {
-        // Damage & knockback any player in radius
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Player"))
-            {
-                // Damage
-                var ps = hit.GetComponent<PlayerStats>();
-                if (ps != null)
-                    ps.TakeDamage(explodeDamage);
+            if (!hit.CompareTag("Player")) continue;
 
-                // Knockback away from center
-                var prb = hit.GetComponent<Rigidbody2D>();
-                if (prb != null)
-                {
-                    Vector2 dir = (hit.transform.position - transform.position).normalized;
-                    prb.AddForce(
-                        dir * explosionKnockback +
-                        Vector2.up * explosionUpwardKnockback,
-                        ForceMode2D.Impulse
-                    );
-                }
-            }
+            Vector2 dir = (hit.transform.position - transform.position).normalized;
+            Vector2 force = new Vector2(dir.x * explosionKnockback,
+                                        explosionUpwardKnockback);
+
+            var ps = hit.GetComponent<PlayerStats>();
+            if (ps != null)
+                ps.TakeDamage(explodeDamage, force);
         }
 
-        // Play explosion animation/sound if you have one
         anim.SetTrigger("Death");
         isDead = true;
         col.enabled = false;
         rb.simulated = false;
-
-        // Cleanup object after deathDelay
         Destroy(gameObject, deathDelay);
     }
 

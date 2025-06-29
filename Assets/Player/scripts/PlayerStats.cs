@@ -14,12 +14,13 @@ public class PlayerStats : MonoBehaviour
     public float flashInterval = 0.1f;
 
     [Header("Knockback Impulse")]
-    [Tooltip("Horizontal and vertical impulse applied on damage.")]
+    [Tooltip("Default horizontal & vertical impulse when damaged without custom force.")]
     public Vector2 knockbackImpulse = new Vector2(5f, 5f);
 
     [Header("Death")]
-    [Tooltip("Time to wait before disabling after death animation.")]
+    [Tooltip("Delay before disabling after death animation.")]
     public float deathDelay = 1f;
+    [HideInInspector]
     public bool isDead = false;
 
     private Rigidbody2D    rb;
@@ -30,9 +31,9 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        rb        = GetComponent<Rigidbody2D>();
+        sr        = GetComponent<SpriteRenderer>();
+        animator  = GetComponent<Animator>();
         originalColor = sr.color;
     }
 
@@ -41,28 +42,48 @@ public class PlayerStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    /// <summary>
+    /// Deal damage to the player. 
+    /// If customKnockback is provided, use that impulse; otherwise use default.
+    /// </summary>
+    public void TakeDamage(int damage, Vector2? customKnockback = null)
     {
-        if (isDead || isInvincible) return;
+        if (isDead || isInvincible) 
+            return;
 
         currentHealth -= damage;
         Debug.Log($"Player took {damage} damage, health now {currentHealth}");
 
-        // ➊ Vertical impulse via AddForce
+        // Reset vertical velocity before applying impulse
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        rb.AddForce(new Vector2(0f, knockbackImpulse.y),
-            ForceMode2D.Impulse);
 
-        // ➋ Horizontal residual via movement script
-        var pm = GetComponent<PlayerMovement>();
-        if (pm != null)
+        // Apply knockback
+        if (customKnockback.HasValue)
         {
-            float dir = sr.flipX ? -1f : 1f;
-            pm.knockbackResidualX = dir * knockbackImpulse.x;
+            rb.AddForce(customKnockback.Value, ForceMode2D.Impulse);
+
+            // Also feed any horizontal component into residualX
+            var pm = GetComponent<PlayerMovement>();
+            if (pm != null)
+                pm.knockbackResidualX = customKnockback.Value.x;
+        }
+        else
+        {
+            // Default behavior: vertical impulse + horizontal residual via movement
+            rb.AddForce(new Vector2(0f, knockbackImpulse.y), ForceMode2D.Impulse);
+            var pm = GetComponent<PlayerMovement>();
+            if (pm != null)
+            {
+                float dir = sr.flipX ? -1f : 1f;
+                pm.knockbackResidualX = dir * knockbackImpulse.x;
+            }
         }
 
         if (currentHealth <= 0)
+        {
+            currentHealth = 0;
             StartCoroutine(Die());
+        }
         else
         {
             animator.SetTrigger("Hurt");
@@ -70,11 +91,16 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    // Keep your old TakeDamage signature for backward compatibility:
+    public void TakeDamage(int damage)
+    {
+        TakeDamage(damage, null);
+    }
+
     private IEnumerator InvincibilityFlash()
     {
         isInvincible = true;
         float timer = 0f;
-
         while (timer < invincibilityDuration)
         {
             sr.color = Color.gray;
@@ -83,7 +109,6 @@ public class PlayerStats : MonoBehaviour
             yield return new WaitForSeconds(flashInterval);
             timer += flashInterval * 2f;
         }
-
         isInvincible = false;
         sr.color = originalColor;
     }
