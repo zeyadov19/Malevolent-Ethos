@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 433079256}
   - component: {fileID: 433079251}
   - component: {fileID: 433079257}
+  - component: {fileID: 433079258}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,11 +292,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  dashSpeed: 15
-  dashDuration: 0.25
   fallMultiplier: 2.5
   knockbackDecayRate: 20
   knockbackResidualX: 0
+  canDash: 1
 --- !u!50 &433079253
 Rigidbody2D:
   serializedVersion: 5
@@ -337,6 +337,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  maxStamina: 20
+  currentStamina: 0
+  staminaRegenInterval: 0.5
+  staminaRegenAmount: 2.5
   invincibilityDuration: 2
   flashInterval: 0.1
   knockbackImpulse: {x: -10, y: 10}
@@ -395,6 +399,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.007515487, y: -0.008668773}
   m_Size: {x: 0.1501112, y: 0.3302382}
   m_Direction: 0
+--- !u!114 &433079258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433079248}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77f0cf05a9bcb54cbea40373b169023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashStaminaCost: 10
 --- !u!1 &452141883
 GameObject:
   m_ObjectHideFlags: 0

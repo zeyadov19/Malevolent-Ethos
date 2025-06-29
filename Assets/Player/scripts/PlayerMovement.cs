@@ -1,3 +1,4 @@
+// PlayerMovement.cs
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,30 +13,24 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;
 
-    [Header("Dash")]
-    public float dashSpeed = 20f;
-    public float dashDuration = 0.2f;
-
     [Header("Better Jump")]
     public float fallMultiplier = 2.5f;
 
     [Header("Knockback Residual")]
     [Tooltip("How fast the horizontal knockback effect decays back to zero.")]
     public float knockbackDecayRate = 20f;
-    [HideInInspector]
-    public float knockbackResidualX = 0f;
+    [HideInInspector] public float knockbackResidualX = 0f;
+
+    [HideInInspector] public bool canDash = true;
 
     private float moveInput;
-    private bool isGrounded;
-    private bool isDashing;
-    private float dashTime;
-    private bool canDash = true;
+    private bool  isGrounded;
 
-    private Rigidbody2D rb;
-    private Animator anim;
+    private Rigidbody2D   rb;
+    private Animator      anim;
     private SpriteRenderer sr;
 
-    void Start()
+    void Awake()
     {
         rb  = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -46,22 +41,15 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        if (!isDashing)
-        {
-            // Flip sprite
-            if (moveInput != 0)
-                sr.flipX = moveInput < 0;
+        // Flip
+        if (moveInput != 0)
+            sr.flipX = moveInput < 0;
 
-            // Jump
-            if (Input.GetButtonDown("Jump") && isGrounded)
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        // Jump
+        if (Input.GetButtonDown("Jump") && isGrounded)
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-            // Dash
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-                StartDash();
-        }
-
-        // Animator
+        // Anim
         anim.SetFloat("Speed", Mathf.Abs(moveInput));
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("VerticalSpeed", rb.linearVelocity.y);
@@ -75,38 +63,18 @@ public class PlayerMovement : MonoBehaviour
         if (!wasGrounded && isGrounded)
             canDash = true;
 
-        // Dashing controls
-        if (isDashing)
-        {
-            float dir = sr.flipX ? -1f : 1f;
-            rb.linearVelocity = new Vector2(dir * dashSpeed, 0f);
-            dashTime -= Time.fixedDeltaTime;
-            if (dashTime <= 0f) isDashing = false;
-            return;
-        }
-
-        // Normal movement plus residual knockback
+        // Movement + knockback
         float horiz = moveInput * moveSpeed + knockbackResidualX;
         rb.linearVelocity = new Vector2(horiz, rb.linearVelocity.y);
 
-        // Decay knockback residual toward zero
+        // Decay residual
         knockbackResidualX = Mathf.MoveTowards(knockbackResidualX, 0f,
             knockbackDecayRate * Time.fixedDeltaTime);
 
         // Better fall gravity
         if (!Input.GetButton("Jump"))
-        {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y
                 * (fallMultiplier - 1f) * Time.fixedDeltaTime;
-        }
-    }
-
-    void StartDash()
-    {
-        isDashing = true;
-        dashTime = dashDuration;
-        canDash = false;
-        anim.SetTrigger("Dash");
     }
 
     void OnDrawGizmosSelected()
