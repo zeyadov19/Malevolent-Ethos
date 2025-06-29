@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 753984819}
   - component: {fileID: 753984818}
   - component: {fileID: 753984817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExplodingSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
