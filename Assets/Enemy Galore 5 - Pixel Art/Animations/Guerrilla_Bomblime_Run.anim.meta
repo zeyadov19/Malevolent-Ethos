@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 5d4562fc065de9642a28149186b663c0
-MonoImporter:
+guid: 5f5a7bc91fc795044a1226683cf243ff
+NativeFormatImporter:
   externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -14,5 +11,5 @@ AssetOrigin:
   productId: 226073
   packageName: Enemy Galore 5 - Pixel Art
   packageVersion: 1.0
-  assetPath: Assets/Characters/Enemy Galore 1 - Pixel Art/Script/EnemyTest.cs
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Animations/Guerrilla_Bomblime_Run.anim
   uploadId: 509214
