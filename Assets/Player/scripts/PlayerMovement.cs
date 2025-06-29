@@ -1,13 +1,14 @@
+// PlayerMovement.cs
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    [HideInInspector] public bool isKnockedBack = false;
+
     [Header("Movement")]
     public float moveSpeed = 8f;
     public float jumpForce = 12f;
-    private float moveInput;
-    private bool isGrounded;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -21,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Better Jump Settings")]
     public float fallMultiplier = 2.5f;
 
+    private float moveInput;
+    private bool isGrounded;
     private bool isDashing = false;
     private float dashTime;
     private bool canDash = true;
@@ -38,28 +41,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isKnockedBack) return;
+
         moveInput = Input.GetAxisRaw("Horizontal");
 
         if (!isDashing)
         {
-            // Flip sprite
             if (moveInput != 0)
                 sr.flipX = moveInput < 0;
 
-            // Jump
             if (Input.GetButtonDown("Jump") && isGrounded)
-            {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            }
 
-            // Dash
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
                 StartDash();
-            }
         }
 
-        // Animator parameters
         anim.SetFloat("Speed", Mathf.Abs(moveInput));
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("VerticalSpeed", rb.linearVelocity.y);
@@ -70,34 +67,27 @@ public class PlayerMovement : MonoBehaviour
         // Ground check
         bool wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
-
         if (!wasGrounded && isGrounded)
-        {
             canDash = true;
-        }
+
+        if (isKnockedBack)
+            return;
 
         if (isDashing)
         {
-            float direction = sr.flipX ? -1 : 1;
-            rb.linearVelocity = new Vector2(direction * dashSpeed, 0f);
-
+            float dir = sr.flipX ? -1f : 1f;
+            rb.linearVelocity = new Vector2(dir * dashSpeed, 0f);
             dashTime -= Time.fixedDeltaTime;
-            if (dashTime <= 0f)
-            {
-                isDashing = false;
-            }
-
+            if (dashTime <= 0f) isDashing = false;
             return;
         }
 
         // Normal movement
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        // Apply stronger gravity immediately if not holding Jump
+        // Better jump gravity (only when jump key is not held)
         if (!Input.GetButton("Jump"))
-        {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
-        }
     }
 
     void StartDash()

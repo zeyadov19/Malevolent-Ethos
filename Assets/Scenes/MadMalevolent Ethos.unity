@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b7f7ec35afbf045a07d729f75ac020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isKnockedBack: 0
   moveSpeed: 8
   jumpForce: 8.5
   groundCheck: {fileID: 125225515}
@@ -337,6 +338,10 @@ MonoBehaviour:
   currentHealth: 0
   regenInterval: 3
   regenAmount: 1
+  invincibilityDuration: 2
+  flashInterval: 0.1
+  knockbackVelocity: {x: 0, y: 2}
+  knockbackLockDuration: 0.2
   isDead: 0
 --- !u!114 &433079256
 MonoBehaviour:

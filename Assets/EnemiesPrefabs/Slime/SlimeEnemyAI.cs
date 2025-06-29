@@ -213,7 +213,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
 
     #region Stomp Detection
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (isDead) return;
 
@@ -225,14 +225,13 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         {
             ps.TakeDamage(contactDamage);
         }
-
-        // Optional: knock the player back a bit
-            Rigidbody2D playerRb = collision.rigidbody;
-        if (playerRb != null)
-            playerRb.linearVelocity = new Vector2(
-                (collision.transform.position.x < transform.position.x ? -1 : 1) * stompBounceForce,
-                playerRb.linearVelocity.y
-            );
+        
+        //     Rigidbody2D playerRb = collision.rigidbody;
+        // if (playerRb != null)
+        //     playerRb.linearVelocity = new Vector2(
+        //         (collision.transform.position.x < transform.position.x ? -1 : 1) * stompBounceForce,
+        //         playerRb.linearVelocity.y
+        //     );
 
     }
 
