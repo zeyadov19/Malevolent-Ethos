@@ -10,7 +10,7 @@ public class DashAbility : MonoBehaviour
     [Tooltip("Duration of one dash in seconds.")]
     public float dashDuration = 0.2f;
     [Tooltip("Stamina cost per dash.")]
-    public float dashStaminaCost = 10;
+    public int dashStaminaCost = 10;
 
     private PlayerMovement movement;
     private PlayerStats    stats;

@@ -71,8 +71,8 @@ public class PlayerMovement : MonoBehaviour
         knockbackResidualX = Mathf.MoveTowards(knockbackResidualX, 0f,
             knockbackDecayRate * Time.fixedDeltaTime);
 
-        // Better fall gravity
-        if (!Input.GetButton("Jump"))
+        // Gravity logic my own cooking
+        if (rb.linearVelocityY <= 0.1f || !Input.GetButton("Jump"))
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y
                 * (fallMultiplier - 1f) * Time.fixedDeltaTime;
     }

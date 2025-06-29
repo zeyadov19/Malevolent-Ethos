@@ -164,13 +164,13 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
 
     private void EnterAttack()
     {
-        moveDirection = 0f;
-        stateTimer = attackDuration;
-        anim.SetTrigger("Attack");
-        anim.SetBool("isWalking", false);
-        // Face player immediately
-        sr.flipX = (player.position.x < transform.position.x);
-        state = State.Attack;
+        // moveDirection = 0f;
+        // stateTimer = attackDuration;
+        // anim.SetTrigger("Attack");
+        // anim.SetBool("isWalking", false);
+        // // Face player immediately
+        // sr.flipX = (player.position.x < transform.position.x);
+        // state = State.Attack;
     }
 
     private void PickNextPatrolIdleTime()
@@ -225,7 +225,8 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
 
         // Did the player stomp us from above?
         float playerY = collision.transform.position.y;
-        if (playerY > transform.position.y + 0.8f)
+        float playerX = collision.transform.position.x;
+        if (playerY > transform.position.y + 0.8f && Mathf.Abs(playerX - transform.position.x) <= 0.5f)
         {
             // Stomp kills crab
             TakeDamage(25);
@@ -240,7 +241,7 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
             if (ps != null)
             {
                 ps.TakeDamage(contactDamage);
-                Debug.Log($"Player took {contactDamage} contact damage from crab.");
+                //Debug.Log($"Player took {contactDamage} contact damage from crab.");
             }
 
             //     Rigidbody2D playerRb = collision.rigidbody;
