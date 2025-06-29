@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a1ead8a196192fd4aa91e788992b798d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226073
+  packageName: Enemy Galore 5 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Controllers/Slime_Guerrilla_Ranged_Horizontal_Projectile_Controller.controller
+  uploadId: 509214

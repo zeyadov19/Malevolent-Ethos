@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 15d1970da57fec244afa690babba4c11
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226073
+  packageName: Enemy Galore 5 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Controllers/Slime_Flying_Slime_Controller.controller
+  uploadId: 509214

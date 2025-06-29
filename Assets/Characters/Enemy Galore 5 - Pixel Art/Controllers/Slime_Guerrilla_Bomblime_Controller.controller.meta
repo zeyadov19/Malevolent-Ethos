@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a3b4520d042866c47919ab6f33e8905d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226073
+  packageName: Enemy Galore 5 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Controllers/Slime_Guerrilla_Bomblime_Controller.controller
+  uploadId: 509214

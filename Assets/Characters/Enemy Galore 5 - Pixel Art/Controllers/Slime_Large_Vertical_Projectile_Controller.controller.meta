@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9d32d2ddc3f37b445a8de6f31ef6e6c0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226073
+  packageName: Enemy Galore 5 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Controllers/Slime_Large_Vertical_Projectile_Controller.controller
+  uploadId: 509214

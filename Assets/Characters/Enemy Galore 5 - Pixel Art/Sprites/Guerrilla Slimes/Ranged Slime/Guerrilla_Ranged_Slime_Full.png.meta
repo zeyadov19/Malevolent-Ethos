@@ -1,0 +1,565 @@
+fileFormatVersion: 2
+guid: 6558a173ceecef9469c3c0ddc686c156
+AssetOrigin:
+  serializedVersion: 1
+  productId: 226073
+  packageName: Enemy Galore 5 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 5 - Pixel Art/Sprites/Guerrilla Slimes/Ranged Slime/Guerrilla_Ranged_Slime_Full.png
+  uploadId: 509214
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4959615123805598007
+    second: Ranged_Slime_Full_0
+  - first:
+      213: 6921104420553064952
+    second: Ranged_Slime_Full_1
+  - first:
+      213: 6924318829336696855
+    second: Ranged_Slime_Full_2
+  - first:
+      213: -3495544733066443996
+    second: Ranged_Slime_Full_3
+  - first:
+      213: -700361830548973803
+    second: Ranged_Slime_Full_4
+  - first:
+      213: 1264807096510697689
+    second: Ranged_Slime_Full_5
+  - first:
+      213: 3684967642312740238
+    second: Ranged_Slime_Full_6
+  - first:
+      213: -448112161003440520
+    second: Ranged_Slime_Full_7
+  - first:
+      213: -6524328523591722855
+    second: Ranged_Slime_Full_8
+  - first:
+      213: 4851977660255556916
+    second: Ranged_Slime_Full_9
+  - first:
+      213: -7736022882395645314
+    second: Ranged_Slime_Full_10
+  - first:
+      213: 7592915854296100012
+    second: Ranged_Slime_Full_11
+  - first:
+      213: 5255602809865565594
+    second: Ranged_Slime_Full_12
+  - first:
+      213: 1260753917761365692
+    second: Ranged_Slime_Full_13
+  - first:
+      213: 7884924459028340203
+    second: Ranged_Slime_Full_14
+  - first:
+      213: -6132116252428952900
+    second: Ranged_Slime_Full_15
+  - first:
+      213: 5324075210145206275
+    second: Ranged_Slime_Full_16
+  - first:
+      213: 6859033698293777427
+    second: Ranged_Slime_Full_17
+  - first:
+      213: -1029730906258526014
+    second: Ranged_Slime_Full_5
+  - first:
+      213: 8296164914098544791
+    second: Ranged_Slime_Full_6
+  - first:
+      213: 4923892569032681262
+    second: Ranged_Slime_Full_7
+  - first:
+      213: 25202141147628040
+    second: Ranged_Slime_Full_8
+  - first:
+      213: 1359278912345376974
+    second: Ranged_Slime_Full_10
+  - first:
+      213: -530665475908627783
+    second: Ranged_Slime_Full_11
+  - first:
+      213: 5560516046151568719
+    second: Ranged_Slime_Full_0
+  - first:
+      213: 133685924796037469
+    second: Ranged_Slime_Full_1
+  - first:
+      213: 3225678881451384367
+    second: Ranged_Slime_Full_2
+  - first:
+      213: 1977801630015955695
+    second: Ranged_Slime_Full_3
+  - first:
+      213: 5225835542939286789
+    second: Ranged_Slime_Full_4
+  - first:
+      213: 5727493790011959989
+    second: Ranged_Slime_Full_9
+  - first:
+      213: -5666101533906513152
+    second: Guerrilla_Ranged_Slime_Full_0
+  - first:
+      213: 4670868114262129089
+    second: Guerrilla_Ranged_Slime_Full_1
+  - first:
+      213: 7192531690420731568
+    second: Guerrilla_Ranged_Slime_Full_2
+  - first:
+      213: -6905269927858479133
+    second: Guerrilla_Ranged_Slime_Full_3
+  - first:
+      213: -3419977669864222822
+    second: Guerrilla_Ranged_Slime_Full_4
+  - first:
+      213: -9221892841606920905
+    second: Guerrilla_Ranged_Slime_Full_5
+  - first:
+      213: 8189484810082834617
+    second: Guerrilla_Ranged_Slime_Full_6
+  - first:
+      213: 6254143383097190677
+    second: Guerrilla_Ranged_Slime_Full_7
+  - first:
+      213: 7695785272419258545
+    second: Guerrilla_Ranged_Slime_Full_8
+  - first:
+      213: -3914713387688167863
+    second: Guerrilla_Ranged_Slime_Full_9
+  - first:
+      213: 7392588517940475168
+    second: Guerrilla_Ranged_Slime_Full_10
+  - first:
+      213: 3311383041552469115
+    second: Guerrilla_Ranged_Slime_Full_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003d43adca6fd51b0800000000000000
+      internalID: -5666101533906513152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9fa477dc142d040800000000000000
+      internalID: 4670868114262129089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be744bf67101d360800000000000000
+      internalID: 7192531690420731568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3efdec7169d8b20a0800000000000000
+      internalID: -6905269927858479133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f89f7dd6cc980d0800000000000000
+      internalID: -3419977669864222822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7354d4bf151450080800000000000000
+      internalID: -9221892841606920905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8d1768b05e6a170800000000000000
+      internalID: 8189484810082834617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5192ed3654e2bc650800000000000000
+      internalID: 6254143383097190677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b09b366eebecca60800000000000000
+      internalID: 7695785272419258545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94671693ae42ca9c0800000000000000
+      internalID: -3914713387688167863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0253976e610c79660800000000000000
+      internalID: 7392588517940475168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guerrilla_Ranged_Slime_Full_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7cccf2f45564fd20800000000000000
+      internalID: 3311383041552469115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Guerrilla_Ranged_Slime_Full_0: -5666101533906513152
+      Guerrilla_Ranged_Slime_Full_1: 4670868114262129089
+      Guerrilla_Ranged_Slime_Full_10: 7392588517940475168
+      Guerrilla_Ranged_Slime_Full_11: 3311383041552469115
+      Guerrilla_Ranged_Slime_Full_2: 7192531690420731568
+      Guerrilla_Ranged_Slime_Full_3: -6905269927858479133
+      Guerrilla_Ranged_Slime_Full_4: -3419977669864222822
+      Guerrilla_Ranged_Slime_Full_5: -9221892841606920905
+      Guerrilla_Ranged_Slime_Full_6: 8189484810082834617
+      Guerrilla_Ranged_Slime_Full_7: 6254143383097190677
+      Guerrilla_Ranged_Slime_Full_8: 7695785272419258545
+      Guerrilla_Ranged_Slime_Full_9: -3914713387688167863
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
