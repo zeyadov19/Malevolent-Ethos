@@ -154,6 +154,7 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator InvincibilityFlash()
     {
+        gameObject.layer = LayerMask.NameToLayer("Recovering");
         isInvincible = true;
         float timer = 0f;
         while (timer < invincibilityDuration)
@@ -166,6 +167,7 @@ public class PlayerStats : MonoBehaviour
         }
         isInvincible = false;
         sr.color = originalColor;
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private IEnumerator Die()
