@@ -62,7 +62,7 @@ public class SlimeKingPhase2AI : MonoBehaviour
         if (state == State.Chase)
             DoChase();
         
-        Debug.Log($"Current State: {state}");
+        //Debug.Log($"Current State: {state}");
     }
 
     private void DoChase()
@@ -154,12 +154,12 @@ public class SlimeKingPhase2AI : MonoBehaviour
 
             // 6) Pause before next jump
             yield return new WaitForSeconds(postSlamDelay);
-            Debug.Log($"Rampage jump {i + 1} completed.");
+            //Debug.Log($"Rampage jump {i + 1} completed.");
         }
 
         state = State.Chase;
         //gameObject.layer = LayerMask.NameToLayer("Enemy");
-        Debug.Log("Rampage finished, returning to chase state.");
+        //Debug.Log("Rampage finished, returning to chase state.");
     }
 
     private void OnCollisionEnter2D(Collision2D col)

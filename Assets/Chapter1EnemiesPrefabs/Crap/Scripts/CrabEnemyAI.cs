@@ -229,7 +229,7 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
         if (playerY > transform.position.y + 0.8f && Mathf.Abs(playerX - transform.position.x) <= 0.5f)
         {
             // Stomp kills crab
-            TakeDamage(25);
+            //TakeDamage(25);
             // Bounce player
             Rigidbody2D playerRb = collision.rigidbody;
             if (playerRb != null)

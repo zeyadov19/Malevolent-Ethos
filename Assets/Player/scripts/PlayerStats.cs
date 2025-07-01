@@ -181,5 +181,8 @@ public class PlayerStats : MonoBehaviour
         if (pm != null) pm.enabled = false;
         GetComponent<Collider2D>().enabled = false;
         rb.simulated = false;
+
+        // hand off to checkpoint manager
+        CheckpointManager.Instance.HandlePlayerDeath(gameObject);
     }
 }
