@@ -242,6 +242,17 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         Destroy(gameObject, deathDelay);
     }
 
+    private IEnumerator Death()
+    {
+        anim.SetTrigger("Death2");
+        col.enabled = false;
+        rb.simulated = false;
+        yield return new WaitForSeconds(2f);
+        Explode();
+        
+        yield return null;
+    }
+
     public void TakeDamage(int amount)
     {
         if (isDead) return;
@@ -249,7 +260,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         currentHealth -= amount;
         anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
-            Explode();  // die by exploding immediately
+            StartCoroutine(Death());
     }
 
     #endregion

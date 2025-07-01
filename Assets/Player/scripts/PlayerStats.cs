@@ -154,6 +154,7 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator InvincibilityFlash()
     {
+        gameObject.layer = LayerMask.NameToLayer("Recovering");
         isInvincible = true;
         float timer = 0f;
         while (timer < invincibilityDuration)
@@ -166,6 +167,7 @@ public class PlayerStats : MonoBehaviour
         }
         isInvincible = false;
         sr.color = originalColor;
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private IEnumerator Die()
@@ -179,5 +181,8 @@ public class PlayerStats : MonoBehaviour
         if (pm != null) pm.enabled = false;
         GetComponent<Collider2D>().enabled = false;
         rb.simulated = false;
+
+        // hand off to checkpoint manager
+        CheckpointManager.Instance.HandlePlayerDeath(gameObject);
     }
 }
