@@ -24,10 +24,10 @@ public class CheckpointManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            if (fadeImage != null)
-                DontDestroyOnLoad(fadeImage.canvas.gameObject);
-            if (deathTextGroup != null)
-                DontDestroyOnLoad(deathTextGroup.gameObject);
+            // if (fadeImage != null)
+            //     DontDestroyOnLoad(fadeImage.canvas.gameObject);
+            // if (deathTextGroup != null)
+            //     DontDestroyOnLoad(deathTextGroup.gameObject);
         }
         else
         {

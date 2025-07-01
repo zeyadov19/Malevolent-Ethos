@@ -30,19 +30,20 @@ public class SlimeKingPhase2AI : MonoBehaviour
     private SpriteRenderer sr;
     private bool           canAttack = true;
 
-    private enum State { Chase, AttackA, Rampage }
+    private enum State { Chase, AttackA, Rampage, Phase2Start }
     private State state = State.Chase;
 
     void Awake()
     {
-        rb   = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sr   = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
         if (stats == null)
             stats = GetComponent<SlimeKingStats>();
+
     }
 
     void OnEnable()
@@ -62,7 +63,29 @@ public class SlimeKingPhase2AI : MonoBehaviour
         if (state == State.Chase)
             DoChase();
         
-        //Debug.Log($"Current State: {state}");
+    }
+
+    public void StartPhase2()
+    {
+        if (state != State.Phase2Start)
+            StartCoroutine(Phase2Start());
+    }
+
+    private IEnumerator Phase2Start()
+    {
+        Debug.Log("Phase 2 starting...");
+        Debug.Log($"Current State: {state}");
+        state = State.Phase2Start;
+        gameObject.layer = LayerMask.NameToLayer("Untouchable");
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        anim.SetTrigger("Phase2Start");
+        yield return new WaitForSeconds(3f);
+
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+        state = State.Chase;
+        DoChase();
+        Debug.Log("Phase 2 started, transitioning to Chase state.");
+        Debug.Log($"Current State: {state}");
     }
 
     private void DoChase()
@@ -97,7 +120,7 @@ public class SlimeKingPhase2AI : MonoBehaviour
 
         // if (Vector2.Distance(transform.position, player.position) <= attackARange)
         //     player.GetComponent<PlayerStats>()?.TakeDamage(attackADamage);
-        if (state == State.Rampage)
+        if (state == State.Rampage || state == State.Phase2Start)
             canAttack = true;
         else
         {
