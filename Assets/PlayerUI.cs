@@ -9,9 +9,9 @@ public class PlayerUI : MonoBehaviour
     public Slider hpSlider;
     public Slider staminaSlider;
 
-    [Header("Value Texts")]
-    public TextMeshProUGUI hpText;
-    public TextMeshProUGUI staminaText;
+    //[Header("Value Texts")]
+    //public TextMeshProUGUI hpText;
+    //public TextMeshProUGUI staminaText;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class PlayerUI : MonoBehaviour
         hpSlider.value = playerStats.currentHealth;
         staminaSlider.value = playerStats.currentStamina;
 
-        hpText.text      = $"{playerStats.currentHealth}/{playerStats.maxHealth}";
-        staminaText.text = $"{playerStats.currentStamina}/{playerStats.maxStamina}";
+        // hpText.text      = $"{playerStats.currentHealth}/{playerStats.maxHealth}";
+        // staminaText.text = $"{playerStats.currentStamina}/{playerStats.maxStamina}";
     }
 }

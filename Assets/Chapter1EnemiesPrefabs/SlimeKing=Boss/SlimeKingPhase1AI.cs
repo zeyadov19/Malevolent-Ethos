@@ -82,23 +82,28 @@ public class SlimeKingPhase1AI : MonoBehaviour
         Vector2 vel = rb.linearVelocity;
         vel.x = dir.x * chaseSpeed;
         rb.linearVelocity = vel;
-        anim.SetBool("isMoving", true);
+        anim.SetBool("isChasing",true);
         sr.flipX = dir.x < 0;
     }
 
     private IEnumerator PerformAttackA()
     {
-        state     = State.AttackA;
+        state = State.AttackA;
         canAttack = false;
+        anim.SetBool("isChasing",false);
         anim.SetTrigger("AttackA");
+        anim.SetBool("AttackAA", true);
         rb.linearVelocity = Vector2.zero;
-
+        yield return new WaitForSeconds(1f); // wait for the attack animation to start
+        anim.SetBool("AttackAA", false);
         yield return new WaitForSeconds(attackACooldown);
 
         // if (Vector2.Distance(transform.position, player.position) <= attackARange)
         //     player.GetComponent<PlayerStats>()?.TakeDamage(attackADamage);
         if (state == State.Rampage)
+        {
             canAttack = true;
+        }
         else
         {
             canAttack = true;
@@ -116,7 +121,10 @@ public class SlimeKingPhase1AI : MonoBehaviour
     private IEnumerator RampageRoutine()
     {
         state = State.Rampage;
-        //gameObject.layer = LayerMask.NameToLayer("SlamAttack");
+        anim.SetBool("isChasing", false);
+        anim.SetBool("AttackAA", false);
+        anim.SetTrigger("Idle");
+        gameObject.layer = LayerMask.NameToLayer("SlamAttack");
 
         // stop any chase motion
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -128,19 +136,24 @@ public class SlimeKingPhase1AI : MonoBehaviour
         {
             // 1) Leap toward the player
             anim.SetTrigger("Jump");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
 
             Vector2 dir = (player.position - transform.position).normalized;
             rb.AddForce(new Vector2(dir.x * rampageHorizontalForce, rampageVerticalForce),ForceMode2D.Impulse);
 
-            // 2) Wait until roughly above the player
-            yield return new WaitUntil(() =>Mathf.Abs(transform.position.x - player.position.x) < 0.1f);
+            // 2) Wait until roughly above the player or 1 second passes
+            float timer = 0f;
+            while (Mathf.Abs(transform.position.x - player.position.x) >= 0.1f && timer < 0.9f)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            anim.SetTrigger("Hover");
 
             // 3) Zero horizontal speed to hover in place
             Vector2 v = rb.linearVelocity;
             rb.linearVelocity = new Vector2(0f,v.y);
-
-
             // 4) Hover
             yield return new WaitForSeconds(hoverDuration);
 
@@ -150,15 +163,16 @@ public class SlimeKingPhase1AI : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
             // 6) Do attack B
-            anim.SetTrigger("AttackB");
+            //anim.SetTrigger("AttackB");
+            anim.SetTrigger("Idle");
 
-            // 6) Pause before next jump
+            // 7) Pause before next jump
             yield return new WaitForSeconds(postSlamDelay);
             //Debug.Log($"Rampage jump {i + 1} completed.");
         }
 
         state = State.Chase;
-        //gameObject.layer = LayerMask.NameToLayer("Enemy");
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
         //Debug.Log("Rampage finished, returning to chase state.");
     }
 

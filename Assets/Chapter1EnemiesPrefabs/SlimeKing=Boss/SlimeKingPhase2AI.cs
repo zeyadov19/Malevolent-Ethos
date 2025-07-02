@@ -157,7 +157,12 @@ public class SlimeKingPhase2AI : MonoBehaviour
             rb.AddForce(new Vector2(dir.x * rampageHorizontalForce, rampageVerticalForce),ForceMode2D.Impulse);
 
             // 2) Wait until roughly above the player
-            yield return new WaitUntil(() =>Mathf.Abs(transform.position.x - player.position.x) < 0.1f);
+            float timer = 0f;
+            while (Mathf.Abs(transform.position.x - player.position.x) >= 0.1f && timer < 0.9f)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
 
             // 3) Zero horizontal speed to hover in place
             Vector2 v = rb.linearVelocity;
