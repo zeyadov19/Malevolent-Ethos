@@ -110,7 +110,7 @@ public class PlayerStats : MonoBehaviour
             return;
 
         currentHealth -= damage;
-        Debug.Log($"Player took {damage} damage, health now {currentHealth}/{maxHealth}");
+        //Debug.Log($"Player took {damage} damage, health now {currentHealth}/{maxHealth}");
 
         // Reset vertical velocity
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);

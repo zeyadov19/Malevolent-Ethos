@@ -58,7 +58,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         ps = player.GetComponent<PlayerStats>();
-        Debug.Log($"Found player: {player != null}, PlayerStats: {ps != null}");
+        //Debug.Log($"Found player: {player != null}, PlayerStats: {ps != null}");
         
         PickNextPatrolIdleTime();
     }

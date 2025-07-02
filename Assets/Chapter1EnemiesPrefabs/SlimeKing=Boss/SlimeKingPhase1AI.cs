@@ -143,13 +143,13 @@ public class SlimeKingPhase1AI : MonoBehaviour
 
             // 2) Wait until roughly above the player or 1 second passes
             float timer = 0f;
-            while (Mathf.Abs(transform.position.x - player.position.x) >= 0.1f && timer < 0.9f)
+            while (Mathf.Abs(transform.position.x - player.position.x) >= 0.3f && timer < 0.9f)
             {
                 timer += Time.deltaTime;
                 yield return null;
             }
 
-            anim.SetTrigger("Hover");
+            // anim.SetTrigger("Hover");
 
             // 3) Zero horizontal speed to hover in place
             Vector2 v = rb.linearVelocity;

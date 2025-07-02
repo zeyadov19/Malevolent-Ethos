@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class SlimeKingStats : MonoBehaviour, IDamageable
 {
@@ -8,24 +9,32 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
     public int maxHealth = 500;
     [HideInInspector] public int currentHealth;
 
+    [Header("Damage Flash")]
+    private SpriteRenderer sr;
+    private Color originalColor;
+    public float flashDuration = 1.5f;
+    public float flashInterval = 0.05f;
+
     [Header("Phase & Rampage Thresholds")]
     public int rampage1Threshold = 400;   // Phase1 rampage #1
     public int rampage2Threshold = 300;   // Phase1 rampage #2
-    public int phase2Threshold   = 250;   // switch to Phase2
+    public int phase2Threshold = 250;   // switch to Phase2
     public int rampage3Threshold = 200;   // Phase2 rampage #1
     public int rampage4Threshold = 100;   // Phase2 rampage #2
 
     [Header("Events")]
-    public UnityEvent OnRampage1;  
-    public UnityEvent OnRampage2;  
-    public UnityEvent OnPhase2;    
-    public UnityEvent OnRampage3;  
-    public UnityEvent OnRampage4;  
-    public UnityEvent OnDeath;     
+    public UnityEvent OnRampage1;
+    public UnityEvent OnRampage2;
+    public UnityEvent OnPhase2;
+    public UnityEvent OnRampage3;
+    public UnityEvent OnRampage4;
+    public UnityEvent OnDeath;
 
     void Awake()
     {
         currentHealth = maxHealth;
+        sr = GetComponent<SpriteRenderer>();
+        originalColor = sr.color;
     }
 
     public void TakeDamage(int amount)
@@ -33,7 +42,8 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
         if (currentHealth <= 0) return;
 
         currentHealth -= amount;
-        Debug.Log($"Slime King took {amount} damage. Current health: {currentHealth}");
+        StartCoroutine(DamageFlash());
+        //Debug.Log($"Slime King took {amount} damage. Current health: {currentHealth}");
 
         if (currentHealth <= rampage1Threshold)
         {
@@ -64,5 +74,19 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
         {
             OnDeath.Invoke();
         }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        float timer = 0f;
+        while (timer < flashDuration)
+        {
+            sr.color = Color.gray;
+            yield return new WaitForSeconds(flashInterval);
+            sr.color = originalColor;
+            yield return new WaitForSeconds(flashInterval);
+            timer += flashInterval * 2f;
+        }
+        sr.color = originalColor;
     }
 }

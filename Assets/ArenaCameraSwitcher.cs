@@ -11,6 +11,7 @@ public class ArenaCameraSwitcher : MonoBehaviour
     [Header("Boss Reference")]
     public GameObject SlimeKing;
     public SlimeKingStats bossStats;
+    public GameObject BossUI;
 
     bool hasSwitched = false;
 
@@ -19,6 +20,7 @@ public class ArenaCameraSwitcher : MonoBehaviour
         if (!hasSwitched && other.CompareTag("Player"))
         {
             SlimeKing.SetActive(true);
+            BossUI.SetActive(true);
 
             bossCam.Priority = mainCam.Priority + 1;
             hasSwitched = true;
