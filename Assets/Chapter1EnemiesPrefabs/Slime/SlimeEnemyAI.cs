@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -14,6 +15,10 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
 
     [Header("Stats")]
     public int maxHealth = 100;
+    public float flashDuration = 0.5f;
+    public float flashInterval = 0.05f;
+    private Color originalColor;
+
     private int currentHealth;
     private bool isDead = false;
     public int contactDamage = 25;
@@ -52,6 +57,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         sr              = GetComponent<SpriteRenderer>();
         rb              = GetComponent<Rigidbody2D>();
         collider2d      = GetComponent<Collider2D>();
+        originalColor   = sr.color;
         currentHealth   = maxHealth;
 
         if (player == null)
@@ -190,6 +196,8 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         if (isDead) return;
 
         currentHealth -= amount;
+        StartCoroutine(DamageFlash());
+        
         if (currentHealth > 0)
         {
             anim.SetTrigger("Hurt");
@@ -198,6 +206,20 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        float timer = 0f;
+        while (timer < flashDuration)
+        {
+            sr.color = Color.gray;
+            yield return new WaitForSeconds(flashInterval);
+            sr.color = originalColor;
+            yield return new WaitForSeconds(flashInterval);
+            timer += flashInterval * 2f;
+        }
+        sr.color = originalColor;
     }
 
     private void Die()
