@@ -16,6 +16,9 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
     [Header("Stats")]
     public int maxHealth = 150;
     private int currentHealth;
+    public float flashDuration = 0.5f;
+    public float flashInterval = 0.05f;
+    private Color originalColor;
     private bool isDead = false;
 
     [Header("Patrol")]
@@ -56,6 +59,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
         rb  = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr   = GetComponent<SpriteRenderer>();
+        originalColor = sr.color;
         col  = GetComponent<Collider2D>();
     }
 
@@ -182,9 +186,25 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         currentHealth -= amount;
+        StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
+
         if (currentHealth <= 0)
             StartCoroutine(DieRoutine());
+    }
+    
+    private IEnumerator DamageFlash()
+    {
+        float timer = 0f;
+        while (timer < flashDuration)
+        {
+            sr.color = Color.gray;
+            yield return new WaitForSeconds(flashInterval);
+            sr.color = originalColor;
+            yield return new WaitForSeconds(flashInterval);
+            timer += flashInterval * 2f;
+        }
+        sr.color = originalColor;
     }
 
     private IEnumerator DieRoutine()
@@ -194,7 +214,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(deathDelay);
 
         rb.simulated = false;
-        col.enabled  = false;
+        col.enabled = false;
         Destroy(gameObject, 1f);
     }
 
