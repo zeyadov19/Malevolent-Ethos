@@ -10,9 +10,7 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
     private enum State { Patrol, Idle, Chase }
 
     [Header("References")]
-    [Tooltip("The box collider defining the patrol area (assign in Inspector).")]
     public BoxCollider2D patrolArea;
-    [Tooltip("Player (will auto-find tag 'Player' if left null).")]
     public Transform player;
 
     [Header("Health")]
@@ -34,6 +32,7 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
 
     [Header("Chase")]
     [Tooltip("Detection radius for chasing.")]
+    public bool StartChasing = false;
     public float chaseRange = 5f;
     [Tooltip("Distance beyond which the slime gives up chase.")]
     public float loseRange = 10f;
@@ -67,6 +66,12 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
+        if (patrolArea == null)
+        {
+            state = State.Chase;
+            EnterChase();
+        }
+        
         PickNewPatrolTarget();
         PickNextStopTime();
     }
@@ -115,6 +120,12 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
 
     private void PatrolUpdate(float dist)
     {
+        if (StartChasing)
+        {
+            state = State.Chase;
+            EnterChase();
+            return;
+        }
         anim.SetBool("isMoving", true);
 
         if (Vector2.Distance(rb.position, patrolTarget) < 0.1f)
@@ -150,7 +161,9 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
     {
         anim.SetBool("isMoving", true);
 
-        // Give up chase if player is too far
+        if (StartChasing == true)
+            return;
+            
         if (dist > loseRange)
         {
             EnterPatrol();
@@ -164,6 +177,12 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
 
     private void EnterPatrol()
     {
+        if (StartChasing)
+        {
+            state = State.Chase;
+            EnterChase();
+            return;
+        }
         PickNewPatrolTarget();
         PickNextStopTime();
         state = State.Patrol;

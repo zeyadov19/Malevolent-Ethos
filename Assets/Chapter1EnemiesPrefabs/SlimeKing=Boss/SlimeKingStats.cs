@@ -17,6 +17,7 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
 
     [Header("Phase & Rampage Thresholds")]
     public int rampage1Threshold = 400;   // Phase1 rampage #1
+    public int rampage1ThresholdPhase2 = 350; // Phase2 rampage #1
     public int rampage2Threshold = 300;   // Phase1 rampage #2
     public int phase2Threshold = 250;   // switch to Phase2
     public int rampage3Threshold = 200;   // Phase2 rampage #1
@@ -25,6 +26,7 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
     [Header("Events")]
     public UnityEvent OnRampage1;
     public UnityEvent OnRampage2;
+    public UnityEvent On1Rampage3;
     public UnityEvent OnPhase2;
     public UnityEvent OnRampage3;
     public UnityEvent OnRampage4;
@@ -54,6 +56,11 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
         {
             OnRampage2.Invoke();
             rampage2Threshold = int.MinValue;
+        }
+        if (currentHealth <= rampage1ThresholdPhase2)
+        {
+            On1Rampage3.Invoke();
+            rampage1ThresholdPhase2 = int.MinValue;
         }
         if (currentHealth <= phase2Threshold)
         {

@@ -19,44 +19,31 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     private bool isDead = false;
 
     [Header("Patrol Settings")]
-    [Tooltip("Waypoints for patrolling.")]
     public Transform[] patrolPoints;
-    [Tooltip("Horizontal speed when patrolling.")]
     public float patrolSpeed = 2f;
 
     [Header("Chase Settings")]
-    [Tooltip("Horizontal speed when chasing or during countdown.")]
+    public bool startChasing = false;
     public float chaseSpeed = 5f;
 
     [Header("Idle Settings")]
-    [Tooltip("Min/Max time between patrol idles.")]
     public float patrolIdleIntervalMin = 3f;
     public float patrolIdleIntervalMax = 6f;
-    [Tooltip("Fixed duration of each idle stop.")]
     public float idleDuration = 1.5f;
 
     [Header("Chase / Explosion Ranges")]
-    [Tooltip("Distance at which slime starts chasing.")]
     public float chaseRange = 6f;
-    [Tooltip("Distance at which slime begins explode countdown.")]
     public float explodeRange = 1.5f;
 
     [Header("Explosion Settings")]
-    [Tooltip("Time (sec) from countdown start to explode.")]
     public float explodeCountdown = 3f;
-    [Tooltip("Flash interval (sec) during countdown.")]
     public float flashInterval = 0.2f;
-    [Tooltip("Final explosion radius.")]
     public float explosionRadius = 4f;
-    [Tooltip("Damage dealt by explosion.")]
     public int explodeDamage = 50;
-    [Tooltip("Horizontal force applied to player on explode.")]
     public float explosionKnockback = 8f;
-    [Tooltip("Vertical force applied to player on explode.")]
     public float explosionUpwardKnockback = 5f;
 
     [Header("Death")]
-    [Tooltip("Seconds to wait before destroying after explode or taking fatal damage.")]
     public float deathDelay = 0.5f;
 
     // Internal
@@ -82,6 +69,14 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (patrolPoints == null || patrolPoints.Length < 2)
+        {
+            state = State.Chase;
+            EnterChase();
+        }
+
+        Debug.Log($"currentstate: {state}");
 
         PickNextIdleTime();
     }
@@ -119,6 +114,13 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
 
     private void PatrolUpdate(float dist)
     {
+        if (startChasing)
+            {
+                state = State.Chase;
+                EnterChase();
+                return;
+            }
+
         anim.SetBool("isWalking", true);
         Vector2 target = patrolPoints[patrolIndex].position;
         moveDirection = Mathf.Sign(target.x - transform.position.x);
@@ -131,6 +133,12 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         if (nextIdleTime <= 0f)
         {
             EnterIdle();
+            return;
+        }
+
+        if (startChasing)
+        {
+            EnterChase();
             return;
         }
 

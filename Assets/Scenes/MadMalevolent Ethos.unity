@@ -1604,6 +1604,7 @@ MonoBehaviour:
   stopIntervalMin: 2
   stopIntervalMax: 5
   idleDuration: 1.5
+  StartChasing: 0
   chaseRange: 8
   loseRange: 15
   chaseSpeed: 4
@@ -1709,6 +1710,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1490274429710670980, guid: 000ee4f5ea038da499e0e51a9b8d5d45, type: 3}
   m_PrefabInstance: {fileID: 287247713111197811}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077067168 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 177350973694624788, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+  m_PrefabInstance: {fileID: 2063929598496289452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2630c87f416ba34280d67ebb6242e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1118602898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2136,7 @@ MonoBehaviour:
   stopIntervalMin: 2
   stopIntervalMax: 5
   idleDuration: 1.5
+  StartChasing: 0
   chaseRange: 8
   loseRange: 15
   chaseSpeed: 4
@@ -2396,6 +2409,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1296894227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 333086771502857080, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+  m_PrefabInstance: {fileID: 2063929598496289452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14177ef4a4da74f4bbc51e997af85793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1367716448 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 9091775788670003085, guid: d4f8b858e1fb8704d8973e3076c17da1, type: 3}
@@ -2559,6 +2583,7 @@ MonoBehaviour:
   stopIntervalMin: 2
   stopIntervalMax: 5
   idleDuration: 1.5
+  StartChasing: 0
   chaseRange: 8
   loseRange: 15
   chaseSpeed: 4
@@ -3455,6 +3480,7 @@ MonoBehaviour:
   stopIntervalMin: 2
   stopIntervalMax: 5
   idleDuration: 1.5
+  StartChasing: 0
   chaseRange: 8
   loseRange: 15
   chaseSpeed: 4
@@ -4218,6 +4244,178 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage1.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage1.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage2.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1296894227}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1077067168}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage1.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnFlyingSlimes
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage2.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartRampage
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SpawnExplodingSlimea
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SpawnFlyingSlimes
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnExplodingSlimea
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SpawnFlyingSlimes
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SpawnFlyingSlimes
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnFlyingSlimes
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage1.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage2.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SlimeKingPhase1AI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage3.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: OnRampage4.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 841172025327722358, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
+      propertyPath: On1Rampage3.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3365328784326264080, guid: 2f19b8ccc12661a438da65c30146dc85, type: 3}
       propertyPath: m_Name
       value: SlimeKing-Boss
@@ -4385,6 +4583,7 @@ MonoBehaviour:
   stopIntervalMin: 2
   stopIntervalMax: 5
   idleDuration: 1.5
+  StartChasing: 0
   chaseRange: 8
   loseRange: 15
   chaseSpeed: 4
