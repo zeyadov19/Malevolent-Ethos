@@ -52,6 +52,7 @@ public class ShadowDash : MonoBehaviour
         // Lock out further dashes & normal movement
 
         movement.enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("Untouchable");
         sr.color = new Color(0.25f, 0.25f, 0.25f, 1f); // Dark gray
         anim.SetTrigger("Dash");
 
@@ -67,6 +68,7 @@ public class ShadowDash : MonoBehaviour
 
         // Re-enable normal movement
         movement.enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("Player");
         sr.color = Color.white;
     }
     
