@@ -53,7 +53,7 @@ public class ShadowDash : MonoBehaviour
 
         movement.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Untouchable");
-        sr.color = new Color(0.25f, 0.25f, 0.25f, 1f); // Dark gray
+        sr.color = new Color(0.2f, 0.2f, 0.2f, 1f); // Dark gray
         anim.SetTrigger("Dash");
 
         float timer = dashDuration;
