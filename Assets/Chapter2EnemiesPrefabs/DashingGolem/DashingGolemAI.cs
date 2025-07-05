@@ -85,7 +85,7 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
 
-        Debug.Log($"Current State: {state}");
+        //Debug.Log($"Current State: {state}");
 
         float dist = Vector2.Distance(transform.position, player.position);
 
