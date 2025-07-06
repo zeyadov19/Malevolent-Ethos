@@ -86,6 +86,7 @@ public class PlayerStats : MonoBehaviour
                 Debug.Log($"Stamina regenerated to {currentStamina}/{maxStamina}");
             }
         }
+
     }
 
     /// <summary>
@@ -168,6 +169,24 @@ public class PlayerStats : MonoBehaviour
         isInvincible = false;
         sr.color = originalColor;
         gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    public void EnterStun()
+    {
+        animator.SetBool("isStunned", true);
+        var pm = GetComponent<PlayerMovement>();
+        if (pm != null) pm.enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+        sr.color = Color.gray;
+    }
+
+    public void ExitStun()
+    {
+        animator.SetBool("isStunned", false);
+        var pm = GetComponent<PlayerMovement>();
+        if (pm != null) pm.enabled = true;
+        GetComponent<Rigidbody2D>().simulated = true;
+        sr.color = originalColor;
     }
 
     private IEnumerator Die()
