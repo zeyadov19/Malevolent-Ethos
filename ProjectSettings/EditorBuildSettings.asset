@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Malevolent Ethos.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/MainMenu.unity
+    guid: 808164a8beaca5b4eb57092a451c60e5
+  - enabled: 1
+    path: Assets/Scenes/Loading Scene.unity
+    guid: e2702334514237c4ab7ac308734f5924
+  - enabled: 1
+    path: Assets/Scenes/Map1 (Slime Kingdom).unity
+    guid: 6d424d84b303493429000c7842a0363c
+  - enabled: 1
+    path: Assets/Scenes/Map2 (tomp of the golems).unity
+    guid: 214dbfa07b5fa824db9d0547b7117276
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
