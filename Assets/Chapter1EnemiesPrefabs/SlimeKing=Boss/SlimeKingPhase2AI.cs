@@ -91,8 +91,10 @@ public class SlimeKingPhase2AI : MonoBehaviour
         state = State.AttackA;
         canAttack = false;
         anim.SetBool("isChasing",false);
+        AudioManager.instance.StopAt("SlimeBossWalk",gameObject);
         anim.SetTrigger("AttackA");
         anim.SetBool("AttackAA", true);
+        AudioManager.instance.PlayAt("SlimeKingAttack",gameObject);
         rb.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(1f); // wait for the attack animation to start
         anim.SetBool("AttackAA", false);
@@ -107,6 +109,7 @@ public class SlimeKingPhase2AI : MonoBehaviour
         else
         {
             canAttack = true;
+            AudioManager.instance.PlayAt("SlimeBossWalk",gameObject);
             state = State.Chase;
         }
 
@@ -122,6 +125,7 @@ public class SlimeKingPhase2AI : MonoBehaviour
     {
         state = State.Rampage;
         anim.SetBool("isChasing", false);
+        AudioManager.instance.StopAt("SlimeBossWalk",gameObject);
         anim.SetBool("AttackAA", false);
         anim.SetTrigger("Idle");
         gameObject.layer = LayerMask.NameToLayer("SlamAttack");
@@ -130,16 +134,20 @@ public class SlimeKingPhase2AI : MonoBehaviour
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
         anim.SetTrigger("Rage");
+        AudioManager.instance.PlayAt("SlimeKingAttackLoop",gameObject);
         yield return new WaitForSeconds(rageAnimationDuration);
+        AudioManager.instance.StopAt("SlimeKingAttackLoop",gameObject);
+
 
         for (int i = 0; i < rampageJumpCount; i++)
         {
             // 1) Leap toward the player
             anim.SetTrigger("Jump");
+            AudioManager.instance.PlayAt("SlimeKingJump",gameObject);
             yield return new WaitForSeconds(0.3f);
 
             Vector2 dir = (player.position - transform.position).normalized;
-            rb.AddForce(new Vector2(dir.x * rampageHorizontalForce, rampageVerticalForce),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(dir.x * rampageHorizontalForce, rampageVerticalForce), ForceMode2D.Impulse);
 
             // 2) Wait until roughly above the player or 1 second passes
             float timer = 0f;
@@ -153,13 +161,14 @@ public class SlimeKingPhase2AI : MonoBehaviour
 
             // 3) Zero horizontal speed to hover in place
             Vector2 v = rb.linearVelocity;
-            rb.linearVelocity = new Vector2(0f,v.y);
+            rb.linearVelocity = new Vector2(0f, v.y);
             // 4) Hover
             yield return new WaitForSeconds(hoverDuration);
 
             // 5) Slam down
             rb.AddForce(Vector2.down * slamForce, ForceMode2D.Impulse);
             anim.SetTrigger("Slam");
+            AudioManager.instance.PlayAt("SlimeKingSlam",gameObject);
 
             yield return new WaitForSeconds(0.5f);
             // 6) Do attack B
@@ -172,6 +181,7 @@ public class SlimeKingPhase2AI : MonoBehaviour
         }
 
         state = State.Chase;
+        AudioManager.instance.PlayAt("SlimeBossWalk",gameObject);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         //Debug.Log("Rampage finished, returning to chase state.");
     }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1434583610713383538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4547749483069075690}
+  m_Layer: 0
+  m_Name: SpawnPoint1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4547749483069075690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434583610713383538}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.07, y: 27.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731815724609622472}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081477015051377263
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 2081477015051377263}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.63, y: -0.78, z: 0}
+  m_LocalPosition: {x: -6.81, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114,6 +145,8 @@ MonoBehaviour:
   spawnPoints1:
   - {fileID: 1585274409366307124}
   - {fileID: 596259468396979342}
+  - {fileID: 8279607688680618773}
+  - {fileID: 4547749483069075690}
   ExplodingSlimea: {fileID: 3770125022687552301, guid: fa9641d7b753c95499d9f7787aa2fcae, type: 3}
   spawnPoints2:
   - {fileID: 1156617213373464609}
@@ -254,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 5472405828348091240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.27, y: -0.83, z: 0}
+  m_LocalPosition: {x: 20.69, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -508,6 +541,7 @@ MonoBehaviour:
   flashDuration: 0.5
   flashInterval: 0.05
   rampage1Threshold: 400
+  rampage1ThresholdPhase2: 350
   rampage2Threshold: 300
   phase2Threshold: 250
   rampage3Threshold: 200
@@ -515,18 +549,6 @@ MonoBehaviour:
   OnRampage1:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 333086771502857080}
-        m_TargetAssemblyTypeName: SlimeKingPhase1AI, Assembly-CSharp
-        m_MethodName: StartRampage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 177350973694624788}
         m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
         m_MethodName: SpawnFlyingSlimes
@@ -566,12 +588,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPhase2:
+  On1Rampage3:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3915720360269454923}
-        m_TargetAssemblyTypeName: SlimeKingGameManager, Assembly-CSharp
-        m_MethodName: EnterPhase2
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnFlyingSlimes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -581,9 +603,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8377384850841694694}
-        m_TargetAssemblyTypeName: SlimeKingPhase2AI, Assembly-CSharp
-        m_MethodName: StartPhase2
+  OnPhase2:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3915720360269454923}
+        m_TargetAssemblyTypeName: SlimeKingGameManager, Assembly-CSharp
+        m_MethodName: EnterPhase2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -608,12 +633,60 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnExplodingSlimea
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnFlyingSlimes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnRampage4:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8377384850841694694}
-        m_TargetAssemblyTypeName: SlimeKingPhase2AI, Assembly-CSharp
-        m_MethodName: StartRampage
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnExplodingSlimea
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnFlyingSlimes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 177350973694624788}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnFlyingSlimes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -735,6 +808,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f047a6e0faec94abac8d2e4f14b306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6566948184098973457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8279607688680618773}
+  m_Layer: 0
+  m_Name: SpawnPoint1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8279607688680618773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566948184098973457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 26.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731815724609622472}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6642502240660779917
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +870,8 @@ Transform:
   m_Children:
   - {fileID: 1585274409366307124}
   - {fileID: 596259468396979342}
+  - {fileID: 8279607688680618773}
+  - {fileID: 4547749483069075690}
   - {fileID: 1156617213373464609}
   - {fileID: 2344938950594102005}
   m_Father: {fileID: 5646979642424565029}

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2235419550633580340}
   - component: {fileID: 6998020999541526820}
+  - component: {fileID: 5503316605212329056}
   - component: {fileID: 1270260535329221069}
   - component: {fileID: 168201742867357511}
   - component: {fileID: 1836211583562300119}
-  - component: {fileID: 5503316605212329056}
   m_Layer: 7
   m_Name: Slime Enemy
   m_TagString: Untagged
@@ -91,6 +91,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5503316605212329056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677913981749517265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113604cfaa480d24d92e335e86210c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ps: {fileID: 0}
+  maxHealth: 100
+  flashDuration: 0.5
+  flashInterval: 0.05
+  contactDamage: 25
+  stompBounceForce: 10
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 2
+  patrolIdleIntervalMin: 3
+  patrolIdleIntervalMax: 6
+  idleDuration: 1.5
+  attackRange: 1.5
+  attackDuration: 1
 --- !u!70 &1270260535329221069
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -177,31 +205,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5503316605212329056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5677913981749517265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113604cfaa480d24d92e335e86210c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  ps: {fileID: 0}
-  maxHealth: 100
-  flashDuration: 0.5
-  flashInterval: 0.05
-  contactDamage: 25
-  stompBounceForce: 10
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  moveSpeed: 2
-  patrolIdleIntervalMin: 3
-  patrolIdleIntervalMax: 6
-  idleDuration: 1.5
-  attackRange: 1.5
-  attackDuration: 1

@@ -2,22 +2,27 @@
 using UnityEngine.Audio;
 
 [System.Serializable]
-public class Sound {
+public class Sound
+{
+    public string            name;
+    public AudioClip         clip;
+    public AudioMixerGroup   mixer;
 
-	public string name;
+    [Range(0f, 1f)]
+    public float    volume = 1f;
+    [Range(-3f, 3f)]
+    public float    pitch  = 1f;
+    public bool     loop   = false;
 
-	public AudioClip clip;
-	public AudioMixerGroup mixer;
+    [Header("3D Spatial Settings")]
+    [Range(0f, 1f)]
+    public float    spatialBlend = 1f;         // fully 3D by default
+    [Range(0f, 5f)]
+    public float    dopplerLevel = 1f;
+    public float    minDistance   = 1f;
+    public float    maxDistance   = 500f;
+    [HideInInspector ]public AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
 
-	[Range(0f, 1f)]
-	public float volume = 1;
-
-	[Range(-3f, 3f)]
-	public float pitch = 1;
-
-	public bool loop = false;
-
-	[HideInInspector]
-	public AudioSource source;
-
+    [HideInInspector]
+    public AudioSource source;                 // manager’s source (for Play)
 }

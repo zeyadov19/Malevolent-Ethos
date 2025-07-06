@@ -122,7 +122,7 @@ MonoBehaviour:
   explodeDamage: 10
   explosionKnockback: 12
   explosionUpwardKnockback: 12
-  deathDelay: 0.5
+  deathDelay: 1.8
 --- !u!50 &3262583856107132155
 Rigidbody2D:
   serializedVersion: 5

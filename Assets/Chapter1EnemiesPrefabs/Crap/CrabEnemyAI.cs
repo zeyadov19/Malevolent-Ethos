@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class CrabEnemyAI : MonoBehaviour, IDamageable
+public class CrabEnemyAI : MonoBehaviour//, IDamageable
 {
     private enum State { Patrol, Idle, Attack }
 
@@ -190,23 +190,23 @@ public class CrabEnemyAI : MonoBehaviour, IDamageable
     /// <summary>
     /// Call this to damage the crab (e.g. from sword or stomp).
     /// </summary>
-    public void TakeDamage(int amount)
-    {
-        if (isDead) return;
+    // public void TakeDamage(int amount)
+    // {
+    //     if (isDead) return;
 
-        currentHealth -= amount;
-        StartCoroutine(DamageFlash());
+    //     currentHealth -= amount;
+    //     StartCoroutine(DamageFlash());
 
-        //Debug.Log($"Crab took {amount} damage, current health: {currentHealth}");
-        if (currentHealth > 0)
-        {
-            anim.SetTrigger("Hurt");
-        }
-        else
-        {
-            Die();
-        }
-    }
+    //     //Debug.Log($"Crab took {amount} damage, current health: {currentHealth}");
+    //     if (currentHealth > 0)
+    //     {
+    //         anim.SetTrigger("Hurt");
+    //     }
+    //     else
+    //     {
+    //         Die();
+    //     }
+    // }
 
     private IEnumerator DamageFlash()
     {

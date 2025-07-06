@@ -53,20 +53,21 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
 
     void Start()
     {
-        anim            = GetComponent<Animator>();
-        sr              = GetComponent<SpriteRenderer>();
-        rb              = GetComponent<Rigidbody2D>();
-        collider2d      = GetComponent<Collider2D>();
-        originalColor   = sr.color;
-        currentHealth   = maxHealth;
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        collider2d = GetComponent<Collider2D>();
+        originalColor = sr.color;
+        currentHealth = maxHealth;
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         ps = player.GetComponent<PlayerStats>();
         //Debug.Log($"Found player: {player != null}, PlayerStats: {ps != null}");
-        
+
         PickNextPatrolIdleTime();
+        AudioManager.instance.PlayAt("SlimeWalk", gameObject);
     }
 
     void Update()
@@ -99,6 +100,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
     private void PatrolUpdate(float dist)
     {
         anim.SetBool("isWalking", true);
+        
 
         // Determine next patrol target and face it
         Vector2 target = patrolPoints[currentPatrolIndex].position;
@@ -134,7 +136,10 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         }
 
         if (stateTimer <= 0f)
+        {
             EnterPatrol();
+        }
+            
     }
 
     private void AttackUpdate(float dist)
@@ -154,6 +159,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
 
     private void EnterPatrol()
     {
+        AudioManager.instance.PlayAt("SlimeWalk", gameObject);
         PickNextPatrolIdleTime();
         anim.SetBool("isWalking", true);
         state = State.Patrol;
@@ -161,6 +167,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
 
     private void EnterIdle()
     {
+        AudioManager.instance.StopAt("SlimeWalk", gameObject);
         moveDirection = 0f;
         stateTimer = idleDuration;
         anim.SetTrigger("Idle");
@@ -196,6 +203,8 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         if (isDead) return;
 
         currentHealth -= amount;
+        AudioManager.instance.StopAt("SlimeWalk", gameObject);
+        AudioManager.instance.PlayAt("SlimeHurt", gameObject);
         StartCoroutine(DamageFlash());
         
         if (currentHealth > 0)

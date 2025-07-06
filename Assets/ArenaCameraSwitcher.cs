@@ -13,6 +13,9 @@ public class ArenaCameraSwitcher : MonoBehaviour
     public SlimeKingStats bossStats;
     public GameObject BossUI;
 
+    [Header("BG")]
+    public GameObject BG;
+
     bool hasSwitched = false;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -24,6 +27,7 @@ public class ArenaCameraSwitcher : MonoBehaviour
 
             bossCam.Priority = mainCam.Priority + 1;
             hasSwitched = true;
+            BG.transform.localScale = new Vector3(2f, 2f, 1f);
 
             bossStats.OnDeath.AddListener(SwitchBack);
         }
@@ -33,6 +37,7 @@ public class ArenaCameraSwitcher : MonoBehaviour
     {
         // restore priorities
         bossCam.Priority = mainCam.Priority - 1;
+        BG.transform.localScale = new Vector3(1f, 1f, 1f);
         // (optional) unsubscribe if you like:
         bossStats.OnDeath.RemoveListener(SwitchBack);
     }

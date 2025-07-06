@@ -183,7 +183,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
 
         stateTimer -= Time.deltaTime;
         if (stateTimer <= 0f)
-            Explode();
+            StartCoroutine(Explode());
     }
 
     #endregion
@@ -215,6 +215,8 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
     {
         stateTimer = explodeCountdown;
         anim.SetTrigger("Attack");
+        AudioSource src = AudioManager.instance.PlayAt("SlimeExplode", gameObject);
+        StartCoroutine(AudioManager.instance.FadeOut(src, 5f, true));
         state = State.ExplodeCountdown;
     }
 
@@ -227,7 +229,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
 
     #region Explosion & Death
 
-    private void Explode()
+    private IEnumerator Explode()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
@@ -248,6 +250,9 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         col.enabled = false;
         rb.simulated = false;
         Destroy(gameObject, deathDelay);
+        yield return new WaitForSeconds(0.5f);
+        sr.enabled = false; 
+        
     }
 
     private IEnumerator Death()
@@ -256,7 +261,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         col.enabled = false;
         rb.simulated = false;
         yield return new WaitForSeconds(2f);
-        Explode();
+        StartCoroutine(Explode());
         
         yield return null;
     }

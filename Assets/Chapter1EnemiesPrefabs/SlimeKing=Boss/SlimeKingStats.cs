@@ -44,6 +44,7 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
         if (currentHealth <= 0) return;
 
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("SlimeHurt",gameObject);
         StartCoroutine(DamageFlash());
         //Debug.Log($"Slime King took {amount} damage. Current health: {currentHealth}");
 

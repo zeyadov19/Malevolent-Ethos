@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class CheckpointManager : MonoBehaviour
 
     [Header("UI & Fade")]
     public GameObject CurrentCheckPoint;
-    public Image fadeImage;        // full-screen black Image
+    public TextMeshProUGUI DeathText;        // full-screen black Image
     public CanvasGroup deathTextGroup;  // CanvasGroup containing “You Died”
     public float      fadeDuration     = 1f;
     public float      deathTextDuration = 1.5f;
+    public float      TextDuration     = 2f;
 
     private Vector2 respawnPosition;    // world space of last bonfire
 
@@ -36,8 +38,8 @@ public class CheckpointManager : MonoBehaviour
         }
 
         // start invisible
-        if (fadeImage != null)
-            fadeImage.color = Color.clear;
+        if (DeathText != null)
+            DeathText.color = Color.clear;
         if (deathTextGroup != null)
             deathTextGroup.alpha = 0f;
     }
@@ -72,16 +74,16 @@ public class CheckpointManager : MonoBehaviour
 
         yield return new WaitForSeconds(deathTextDuration);
 
-        // 2) Fade to black
+        //2) Fade to black
         t = 0f;
         while (t < fadeDuration)
         {
-            fadeImage.color = new Color(0, 0, 0, t / fadeDuration);
+            DeathText.color = new Color(170, 0, 0, t / fadeDuration);
             t += Time.deltaTime;
             yield return null;
         }
-        fadeImage.color = Color.black;
-
+        //DeathText.color = Color.black;
+        yield return new WaitForSeconds(TextDuration);
         // 3) Reload scene
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
@@ -109,11 +111,11 @@ public class CheckpointManager : MonoBehaviour
         t = fadeDuration;
         while (t > 0f)
         {
-            fadeImage.color = new Color(0, 0, 0, t / fadeDuration);
+            DeathText.color = new Color(170, 0, 0, t / fadeDuration);
             t -= Time.deltaTime;
             yield return null;
         }
-        fadeImage.color = Color.clear;
+        DeathText.color = Color.clear;
 
         // 9) Hide “You Died”
         t = fadeDuration;

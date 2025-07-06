@@ -221,6 +221,7 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         if (!collision.gameObject.CompareTag("Player")) return;
+        AudioManager.instance.PlayAt("SlimeAttack", gameObject);
 
         var ps = collision.gameObject.GetComponent<PlayerStats>();
         if (ps != null)
@@ -257,6 +258,7 @@ public class FlyingSlimeAI : MonoBehaviour, IDamageable
     {
         isDead = true;
         anim.SetTrigger("Death");
+        AudioManager.instance.PlayAt("SlimeDeath", gameObject);
         rb.simulated = false;
         col.enabled = false;
         Destroy(gameObject, 1f);

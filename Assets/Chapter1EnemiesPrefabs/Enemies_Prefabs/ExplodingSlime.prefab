@@ -109,11 +109,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolSpeed: 2
+  startChasing: 0
   chaseSpeed: 5
   patrolIdleIntervalMin: 3
   patrolIdleIntervalMax: 6
   idleDuration: 1.5
-  chaseRange: 6
+  chaseRange: 4.5
   explodeRange: 2
   explodeCountdown: 3
   flashInterval: 0.05
@@ -121,7 +122,7 @@ MonoBehaviour:
   explodeDamage: 10
   explosionKnockback: 12
   explosionUpwardKnockback: 12
-  deathDelay: 0.5
+  deathDelay: 1.8
 --- !u!50 &7730907927455544038
 Rigidbody2D:
   serializedVersion: 5
