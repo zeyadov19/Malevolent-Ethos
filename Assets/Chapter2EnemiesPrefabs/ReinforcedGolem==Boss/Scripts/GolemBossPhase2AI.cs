@@ -5,22 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
-public class GolemBossAI : MonoBehaviour, IDamageable
+public class GolemBossPhase2AI : MonoBehaviour
 {
-    private enum State { Chase, MeleeAttack, BulletHell, Death }
-    private State state = State.Chase;
+    public enum State { Chase, MeleeAttack,BulletAttack ,BulletHell, Death }
+    public State state = State.Chase;
 
     [Header("References")]
     [Tooltip("Player Transform")]
     public Transform player;
-
-    [Header("Health")]
-    public int maxHealth = 500;
-    private int currentHealth;
-    private float flashDuration = 1.5f;
-    private float flashInterval = 0.05f;
-    //private bool usedHell400 = false;
-    //private bool usedHell300 = false;
 
     [Header("Chase & Melee")]
     public float chaseSpeed    = 3f;
@@ -29,10 +21,13 @@ public class GolemBossAI : MonoBehaviour, IDamageable
     public int   meleeDamage   = 30;
     private bool  canMelee     = true;
 
+    [Header("Bullet Attack")]
+    public float bulletAttackRange = 8f;
+    public float bulletAttackCooldown = 5f;
+    private bool canBulletAttack = true;
+
     [Header("Bullet Hell")]
-    [Tooltip("Animation time for slam ground & stun")]
     public float detectDuration  = 0.5f;
-    [Tooltip("Two waypoints for bullet hell run")]
     public Transform[] bulletWaypoints; // assign exactly 2
     [Tooltip("Run speed toward selected waypoint")]
     public float runSpeed        = 4f;
@@ -42,10 +37,7 @@ public class GolemBossAI : MonoBehaviour, IDamageable
     public GameObject bulletPrefab;
     [Tooltip("Where bullets spawn from")]
     public Transform bulletSpawn;
-
-    [Header("Death")]
-    public float deathDelay = 1f;
-
+    
     // internals
     private Rigidbody2D  rb;
     private Animator     anim;
@@ -62,22 +54,18 @@ public class GolemBossAI : MonoBehaviour, IDamageable
 
     void Start()
     {
-        currentHealth = maxHealth;
         if (player == null)
             player = GameObject.FindWithTag("Player")?.transform;
     }
 
     void Update()
     {
-        if (state == State.Death) return;
-
         float dist = Vector2.Distance(transform.position, player.position);
         switch (state)
         {
             case State.Chase:
                 ChaseUpdate(dist);
                 break;
-            // MeleeAttack and BulletHell run their own coroutines
         }
     }
 
@@ -90,6 +78,11 @@ public class GolemBossAI : MonoBehaviour, IDamageable
         {
             StartCoroutine(MeleeCoroutine());
             return;
+        }
+        if (dist >= bulletAttackRange && canBulletAttack)
+        {
+            StartCoroutine(BulletAttack());
+            //return;
         }
 
         // chase player horizontally
@@ -108,10 +101,54 @@ public class GolemBossAI : MonoBehaviour, IDamageable
         anim.SetTrigger("Melee");
 
         yield return new WaitForSeconds(meleeCooldown);
+        if (state == State.BulletHell)
+        {
+            canMelee = true;
+        }
+        else
+        { 
+            canMelee = true;
+            state    = State.Chase;
+        }
+    }
 
-        // damage is handled via animation-triggered collider
-        canMelee = true;
-        state    = State.Chase;
+    private IEnumerator BulletAttack()
+    {
+        state = State.BulletAttack;
+        canBulletAttack = false;
+        anim.SetBool("isMoving", false);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        anim.SetTrigger("FireBullet");
+        yield return new WaitForSeconds(0.2f);
+
+        if (bulletPrefab != null && bulletSpawn != null)
+        {
+            GameObject b = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            if (sr.flipX)
+            {
+                Vector3 s = b.transform.localScale;
+                s.x *= -1;
+                b.transform.localScale = s;
+            }
+        }
+        yield return new WaitForSeconds(0.5f);
+        state = State.Chase;
+
+        yield return new WaitForSeconds(bulletAttackCooldown);
+        if (state == State.BulletHell)
+        {
+            canBulletAttack = true;
+        }
+        else
+        {
+            canBulletAttack = true;
+        }
+    }
+    
+    public void StartBulletHell()
+    {
+        if (state == State.BulletHell) return;
+        StartCoroutine(BulletHellSequence());
     }
 
     private IEnumerator BulletHellSequence()
@@ -178,47 +215,6 @@ public class GolemBossAI : MonoBehaviour, IDamageable
 
         // 4) return to normal chase/melee
         state = State.Chase;
-    }
-
-    public void TakeDamage(int amount)
-    {
-        if (state == State.Death) return;
-
-        currentHealth -= amount;
-        StartCoroutine(DamageFlash());
-        anim.SetTrigger("Hurt");
-
-        // if hit during bullet hell, exit it immediately
-        if (state == State.BulletHell)
-            state = State.Chase;
-
-        if (currentHealth <= 0)
-                StartCoroutine(DieRoutine());
-    }
-    
-    private IEnumerator DamageFlash()
-    {
-        float timer = 0f;
-        while (timer < flashDuration)
-        {
-            sr.color = Color.gray;
-            yield return new WaitForSeconds(flashInterval);
-            sr.color = Color.white;
-            yield return new WaitForSeconds(flashInterval);
-            timer += flashInterval * 2f;
-        }
-        sr.color = Color.white;
-    }
-
-    private IEnumerator DieRoutine()
-    {
-        state = State.Death;
-        anim.SetTrigger("Death");
-        yield return new WaitForSeconds(deathDelay);
-
-        rb.simulated = false;
-        col.enabled = false;
-        Destroy(gameObject, 1f);
     }
 
     void OnDrawGizmosSelected()

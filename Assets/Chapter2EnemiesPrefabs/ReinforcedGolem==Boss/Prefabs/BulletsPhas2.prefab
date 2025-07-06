@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1508153617597786557}
   - component: {fileID: 7843263222269958826}
   m_Layer: 0
-  m_Name: Bullets
+  m_Name: BulletsPhas2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fa10c3c80636248adfa1db376d7bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 10
+  damage: 15
+  speed: 18
   lifetime: 5
 --- !u!95 &3856879545048236848
 Animator:
@@ -154,7 +154,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &7843263222269958826
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
