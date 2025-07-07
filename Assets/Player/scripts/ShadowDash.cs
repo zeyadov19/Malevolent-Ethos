@@ -4,12 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(SpriteRenderer))]
 public class ShadowDash : MonoBehaviour
 {
+    [Header("Dash Component")]
+    public GameObject ShadowDashGO;
+
     [Header("Dash Settings")]
-    [Tooltip("Unlocked dash speed.")]
     public float dashSpeed = 20f;
-    [Tooltip("Duration of one dash in seconds.")]
     public float dashDuration = 0.2f;
-    [Tooltip("Stamina cost per dash.")]
     public int dashStaminaCost = 10;
 
     private PlayerMovement movement;
@@ -54,6 +54,7 @@ public class ShadowDash : MonoBehaviour
         movement.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Untouchable");
         sr.color = new Color(0.2f, 0.2f, 0.2f, 1f); // Dark gray
+        ShadowDashGO.SetActive(true);
         anim.SetTrigger("Dash");
 
         float timer = dashDuration;
@@ -69,6 +70,7 @@ public class ShadowDash : MonoBehaviour
         // Re-enable normal movement
         movement.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Player");
+        ShadowDashGO.SetActive(false);
         sr.color = Color.white;
     }
     
