@@ -4,220 +4,244 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class BoneGladiatorAI : MonoBehaviour, IDamageable
 {
-    private enum State { Chase, Patrol, Idle, Attack, Block }
-    private State state = State.Chase;
+    private enum State { Patrol, Idle, Chase, Attack, Block, Death }
+    private State state = State.Patrol;
 
     [Header("References")]
     public Transform player;
-    //public Collider2D wakeTrigger;
     public Transform[] patrolPoints;
+
+    [Header("Detection & Movement")]
     public float detectRange = 5f;
-
-    [Header("Timings")]
-    public float leaveDelay      = 5f;     // after losing player
-    public float patrolDuration  = 20f;    // total patrol before sleep
-    public float idleIntervalMin = 3f;
-    public float idleIntervalMax = 6f;
-    public float idleDuration    = 1.5f;
-    public float blockDuration   = 10f;
-
-    [Header("Movement")]
+    private float lostTime = 0f;
+    public float chaseLostTime = 3f;
     public float patrolSpeed = 2f;
     public float chaseSpeed  = 4f;
 
-    [Header("Attack")]
+    [Header("Patrol Idle")]
+    public float idleIntervalMin = 3f;
+    public float idleIntervalMax = 6f;
+    public float idleDuration    = 1.5f;
+
+    [Header("Melee Attack")]
     public float meleeRange    = 2f;
     public float meleeCooldown = 1f;
     public int   meleeDamage   = 20;
 
-    [Header("Health")]
-    public int blockThreshold = 25;
-    public int maxHealth      = 100;
-    public float flashDuration = 1.5f;
-    public float flashInterval = 0.05f;
+    [Header("Block")]
+    public int   blockThreshold = 25;
+    public float blockDuration  = 10f;
 
-    // internals
-    private Animator anim;
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private int currentHealth;
-    private int         patrolIndex;
-    private float       leaveTimer;
-    //private float       patrolTimer;
-    private float       nextIdleTime;
-    private float       idleTimer;
-    private bool        canMelee = true;
-    private Coroutine   blockRoutine;
+    [Header("Health & Death")]
+    public int   maxHealth  = 100;
+    public float flashDuration = 0.5f;
+    public float flashInterval = 0.05f;
+    public float deathDelay = 1f;
+
+    Animator      anim;
+    Rigidbody2D   rb;
+    Collider2D    col;
+    SpriteRenderer sr;
+
+    int    currentHealth;
+    bool   canMelee    = true;
+    int    patrolIndex = 0;
+    float  nextIdleTime;
+    float  idleTimer;
+    Coroutine blockRoutine;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
         rb   = GetComponent<Rigidbody2D>();
+        col  = GetComponent<Collider2D>();
         sr   = GetComponent<SpriteRenderer>();
-        currentHealth = maxHealth;
     }
 
     void Start()
     {
         if (player == null)
             player = GameObject.FindWithTag("Player")?.transform;
+
+        currentHealth = maxHealth;
+        ScheduleNextIdle();
+        anim.SetBool("isMoving", true);
     }
 
     void Update()
     {
+        if (state == State.Death) return;
+
+        float dist = Vector2.Distance(transform.position, player.position);
         switch (state)
         {
-            case State.Chase:
-                ChaseUpdate();
-                break;
-            case State.Patrol:
-                PatrolUpdate();
-                break;
-            case State.Idle:
-                IdleUpdate();
-                break;
+            case State.Patrol: PatrolUpdate(dist); break;
+            case State.Idle: IdleUpdate(dist); break;
+            case State.Chase: ChaseUpdate(dist); break;
         }
+        //Debug.Log($"State: {state}");
     }
 
-    private void ChaseUpdate()
+    // ————————————— PATROL —————————————
+    void PatrolUpdate(float dist)
     {
-        float dist = Vector2.Distance(transform.position, player.position);
-
-        // Attack if in melee range
-        if (dist <= meleeRange && canMelee)
+        // spot player?
+        if (dist <= detectRange)
         {
-            StartCoroutine(MeleeAttack());
+            EnterChase();
             return;
         }
 
-        // Lost sight?
+        // maybe go idle?
+        nextIdleTime -= Time.deltaTime;
+        if (nextIdleTime <= 0f)
+        {
+            EnterIdle();
+            return;
+        }
+
+        // move toward current patrol point
+        if (patrolPoints.Length == 0) return;
+        Transform target = patrolPoints[patrolIndex];
+        float dirX = Mathf.Sign(target.position.x - transform.position.x);
+        rb.linearVelocity = new Vector2(dirX * patrolSpeed, rb.linearVelocity.y);
+
+        // face direction
+        sr.flipX = (dirX < 0f);
+        anim.SetBool("isMoving", true);
+
+        // reached point?
+        if (Mathf.Abs(transform.position.x - target.position.x) < 0.1f)
+            patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
+    }
+
+    // ————————————— IDLE —————————————
+    void IdleUpdate(float dist)
+    {
+        // spot player?
+        if (dist <= detectRange)
+        {
+            EnterChase();
+            return;
+        }
+
+        idleTimer -= Time.deltaTime;
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        anim.SetBool("isMoving", false);
+
+        if (idleTimer <= 0f)
+            EnterPatrol();
+    }
+
+    // ————————————— CHASE —————————————
+    void ChaseUpdate(float dist)
+    {
+        // lost sight?
         if (dist > detectRange)
         {
-            leaveTimer = leaveDelay;
-            state = State.Patrol;
-            anim.SetBool("isMoving", true);
+            lostTime += Time.deltaTime;
+            if (lostTime >= chaseLostTime)
+            {
+                lostTime = 0f;
+                EnterIdle();
+                return;
+            }
+        }
+
+        // melee attack if in range
+        if (dist <= meleeRange && canMelee)
+        {
+            StartCoroutine(Melee());
             return;
         }
 
-        // Move toward player
-        Vector2 dir = (player.position - transform.position).normalized;
-        rb.linearVelocity = new Vector2(dir.x * chaseSpeed, rb.linearVelocity.y);
+        // chase player horizontally
+        float dirX = Mathf.Sign(player.position.x - transform.position.x);
+        rb.linearVelocity = new Vector2(dirX * chaseSpeed, rb.linearVelocity.y);
+        sr.flipX = (dirX < 0f);
         anim.SetBool("isMoving", true);
-        transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
     }
 
-    private IEnumerator MeleeAttack()
+    IEnumerator Melee()
     {
         state = State.Attack;
+        anim.SetBool("isMoving", false);
         canMelee = false;
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(meleeCooldown);
-        canMelee = true;
-        state = State.Chase;
-    }
-
-    private void PatrolUpdate()
-    {
-        // patrolTimer += Time.deltaTime;
-        // leaveTimer -= Time.deltaTime;
-
-        // Lost player too long? continue patrolling inside box
-        if (leaveTimer <= 0f)
-        {
-            // Move between patrol points
-            Vector2 target = patrolPoints[patrolIndex].position;
-            Vector2 dir    = (target - (Vector2)transform.position).normalized;
-            rb.linearVelocity    = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
-            anim.SetBool("isMoving", true);
-            transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
-
-            if (Vector2.Distance(transform.position, target) < 0.1f)
-            {
-                patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
-            }
-
-            // occasional idle
-            nextIdleTime -= Time.deltaTime;
-            if (nextIdleTime <= 0f)
-                EnterIdle();
-        }
+        if (state == State.Block)
+            canMelee = true;
         else
         {
-            EnterChase();
+            canMelee = true;
+            state = State.Chase;
         }
     }
 
-    private void IdleUpdate()
+    void EnterBlock()
     {
-        idleTimer -= Time.deltaTime;
+        if (blockRoutine != null)
+            StopCoroutine(blockRoutine);
+        blockRoutine = StartCoroutine(BlockRoutine());
+    }
+
+    IEnumerator BlockRoutine()
+    {
+        state = State.Block;
         rb.linearVelocity = Vector2.zero;
-        anim.SetBool("isMoving", false);
+        anim.SetTrigger("Block");
 
-        if (idleTimer <= 0f)
+        float t = blockDuration;
+        while (t > 0f)
         {
-            state = State.Patrol;
-            nextIdleTime = Random.Range(idleIntervalMin, idleIntervalMax);
+            t -= Time.deltaTime;
+            // face player
+            float dx = player.position.x - transform.position.x;
+            sr.flipX = (dx < 0f);
+            yield return null;
         }
+
+        // recover & resume chase
+        currentHealth = maxHealth;
+        EnterChase();
     }
 
-    private void EnterChase()
+    void EnterPatrol()
     {
-        state = State.Chase;
+        state = State.Patrol;
+        ScheduleNextIdle();
         anim.SetBool("isMoving", true);
     }
 
-    private void EnterIdle()
+    void EnterIdle()
     {
         state = State.Idle;
         idleTimer = idleDuration;
         anim.SetTrigger("Idle");
     }
 
-    private void EnterBlock()
+    void EnterChase()
     {
-        if (blockRoutine != null) StopCoroutine(blockRoutine);
-        blockRoutine = StartCoroutine(BlockRoutine());
+        state = State.Chase;
+        anim.SetBool("isMoving", true);
     }
 
-    private IEnumerator BlockRoutine()
+    void ScheduleNextIdle()
     {
-        state = State.Block;
-        rb.linearVelocity = Vector2.zero;
-        anim.Play("isBlocking");
-        float timer = blockDuration;
-        while (timer > 0f)
-        {
-            timer -= Time.deltaTime;
-            // face player
-            float dx = player.position.x - transform.position.x;
-            transform.localScale = new Vector3(dx < 0 ? -1 : 1, 1, 1);
-            yield return null;
-        }
-        // recover HP
-        currentHealth = maxHealth;
-        EnterChase();
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("ShadowDash"))
-        {
-            TakeDash();
-        }
+        nextIdleTime = Random.Range(idleIntervalMin, idleIntervalMax);
     }
 
     public void TakeDamage(int amount)
     {
-        if (state == State.Block)
-        {
+        if (state == State.Block) return;
 
-            return;
-        }
         currentHealth -= amount;
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
-        if (currentHealth <= blockThreshold)
+        if (currentHealth <= 0)
+            EnterDeath();
+        else if (currentHealth <= blockThreshold)
             EnterBlock();
     }
 
@@ -235,14 +259,45 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         sr.color = Color.white;
     }
 
-    // Call this from your ShadowDash collision code instead:
     public void TakeDash()
     {
         if (state == State.Block)
+            EnterDeath();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ShadowDash"))
+            TakeDash();
+    }
+
+    void EnterDeath()
+    {
+        state = State.Death;
+        anim.SetTrigger("Death");
+        rb.simulated = false;
+        col.enabled = false;
+        Destroy(gameObject, deathDelay);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, meleeRange);
+
+        if (patrolPoints != null && patrolPoints.Length > 0)
         {
-            // die immediately
-            anim.SetTrigger("Death");
-            // Add any additional death logic here if needed
+            Gizmos.color = Color.cyan;
+            for (int i = 0; i < patrolPoints.Length; i++)
+            {
+                if (patrolPoints[i] == null) continue;
+                Gizmos.DrawWireSphere(patrolPoints[i].position, 0.2f);
+                Transform nxt = patrolPoints[(i + 1) % patrolPoints.Length];
+                if (nxt != null)
+                    Gizmos.DrawLine(patrolPoints[i].position, nxt.position);
+            }
         }
     }
 }
