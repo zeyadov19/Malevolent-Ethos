@@ -4,11 +4,10 @@ public class PlayerTakeDamage : MonoBehaviour
 {
     public int contactDamage = 100;
     
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
 
-        var ps = collision.gameObject.GetComponent<PlayerStats>();
+        var ps = other.gameObject.GetComponent<PlayerStats>();
         if (ps != null)
             ps.TakeDamage(contactDamage);
     }
