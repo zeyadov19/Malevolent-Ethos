@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ff7226b145bf83e4ab486dce6a3e520c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220016
+  packageName: Enemy Galore 4 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 4 - Pixel Art/Controllers/Bones_Pianist_Minstrel_Controller.controller
+  uploadId: 503199

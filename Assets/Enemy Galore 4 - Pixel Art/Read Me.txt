@@ -1,0 +1,104 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LICENSE
+
+- You can use this asset in any game project, personal or commercial
+- DO NOT resell or redistribute AS A GAME ASSET, it has to be part of a project
+- Modify to suit your needs
+- You are NOT allowed to turn any of my assets to an NFT.
+- Credit not necessary but appreciated, if you do you can link to my ITCH profile
+ITCH.IO LINK: https://admurin.itch.io/
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ENEMY DETAILS
+
+
+Bones - Gladiator
+
+- 41 frames
+- 0 FX frames
+- 7 Animations (Attack, Block, Death, Hit, Idle, Run, Summon)
+
+
+Bones - Marksman
+
+- 40 frames
+- 0 FX frames
+- 3 Projectile frames
+- 8 Animations (Arrow Projectile, Attack, Block, Death, Hit, Idle, Run, Summon)
+
+
+Bones - Minstrel
+
+- 37 frames
+- 16 FX frames (shared between Minstrel and Troubadour)
+- 7 animations (Attack A & B, Death, End, Hit, Idle, Start)
+
+
+Bones - Troubadour
+
+- 37 frames
+- 16 FX frames (shared between Minstrel and Troubadour)
+- 7 animations (Attack A & B, Death, End, Hit, Idle, Start)
+
+
+Death
+- 66 frames
+- 0 frames
+- 17 Projectile frames
+- 6 animations (Attack A & B, Fly, Hit, Magic projetile, Summon)
+
+
+Bones - Captain
+
+- 39 frames
+- 3 FX frames (shared between Captain and Quartermaster)
+- 6 animations (Ability, Attack, Death, Hit, Idle/Fly, Projectile)
+
+
+Bones - Quartermaster
+
+- 39 frames
+- 3 FX frames (shared between Captain and Quartermaster)
+- 6 animations (Ability, Attack, Death, Hit, Idle/Fly, Projectile)
+
+
+Bones - Triple Skulls
+
+- 47 frames
+- 4+ FX frames
+- 6 Animations (Attack, Death, Fly, Hit, Idle, Projectile)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+IDEAS
+
+- Minstrels/Troubadours start in the "IDLE" animation, when the player enters its range the "START" animation will play followed by either "ATTACK A" or "ATTACK B". 
+	- Play the "END" animation followed by "IDLE" animation to stop the Minstrel/Troubadour from attacking.
+	- Spawn whichever note you want and make them follow the player. Deals damage upon contact.
+- Death can not die hence no animation, maybe it just vanishes.
+	- When using the "ABILITY" animation you can either spawn the magic scythes or summon other enemies, would be best if the skeletons are summoned.
+	- You can loop the "ABILITY" animation by making linking "SUMMON START", "SUMMON LOOP", "SUMMON END"
+- When the Captain/Quartermaster use their ability they can cast magic or command other troops to attack their target
+- The fly animation of Triple skulls can also be used as a melee attack if desired. Their main attack can be looped. 
+	- Check the animator for references.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+If you have any other questions you can check my discord where I will answer and help you use my assets. 
+DISCORD LINK: https://discord.com/invite/jmf4pzv5Fj
+
+If you want to support me you can check out my Patreon. This allows me to focus on making more assets and releasing them for free assets!
+PATREON LINK: https://www.patreon.com/admurin
+
+
+Don't forget to leave a review and check my other assets!
+
+Thank you.
+Admurin

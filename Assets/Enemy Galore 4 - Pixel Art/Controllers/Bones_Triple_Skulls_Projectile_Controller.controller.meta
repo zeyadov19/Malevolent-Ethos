@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51da9dc11f529b240bb4c1b1517efc93
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220016
+  packageName: Enemy Galore 4 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 4 - Pixel Art/Controllers/Bones_Triple_Skulls_Projectile_Controller.controller
+  uploadId: 503199

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 32a645138f2a0ee4887b5aee240d7ad0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220016
+  packageName: Enemy Galore 4 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 4 - Pixel Art/Controllers/Death_Controller.controller
+  uploadId: 503199

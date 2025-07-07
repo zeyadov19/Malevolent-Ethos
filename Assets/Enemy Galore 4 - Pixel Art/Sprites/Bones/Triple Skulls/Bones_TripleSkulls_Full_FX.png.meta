@@ -1,0 +1,1281 @@
+fileFormatVersion: 2
+guid: ad423003f5f804741a661bb309de1b6f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220016
+  packageName: Enemy Galore 4 - Pixel Art
+  packageVersion: 1.0
+  assetPath: Assets/Enemy Galore 4 - Pixel Art/Sprites/Bones/Triple Skulls/Bones_TripleSkulls_Full_FX.png
+  uploadId: 503199
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7513689679852013491
+    second: Bones_TripleSkulls_Full_FX_0
+  - first:
+      213: 3701322137626381691
+    second: Bones_TripleSkulls_Full_FX_1
+  - first:
+      213: 8431599388784900068
+    second: Bones_TripleSkulls_Full_FX_2
+  - first:
+      213: -4303183107813398001
+    second: Bones_TripleSkulls_Full_FX_3
+  - first:
+      213: 4103111423898061724
+    second: Bones_TripleSkulls_Full_FX_4
+  - first:
+      213: -1638205099424981466
+    second: Bones_TripleSkulls_Full_FX_5
+  - first:
+      213: 3668992440416479212
+    second: Bones_TripleSkulls_Full_FX_6
+  - first:
+      213: 2483302607446431763
+    second: Bones_TripleSkulls_Full_FX_7
+  - first:
+      213: 2642138882650864329
+    second: Bones_TripleSkulls_Full_FX_8
+  - first:
+      213: -5358218862333021601
+    second: Bones_TripleSkulls_Full_FX_9
+  - first:
+      213: -1371892095328423585
+    second: Bones_TripleSkulls_Full_FX_10
+  - first:
+      213: 2042447361038813672
+    second: Bones_TripleSkulls_Full_FX_11
+  - first:
+      213: -7365800622694188511
+    second: Bones_TripleSkulls_Full_FX_12
+  - first:
+      213: -6549186561980128339
+    second: Bones_TripleSkulls_Full_FX_13
+  - first:
+      213: -90384699102032897
+    second: Bones_TripleSkulls_Full_FX_14
+  - first:
+      213: -4356575416432787478
+    second: Bones_TripleSkulls_Full_FX_15
+  - first:
+      213: -7855797448942939416
+    second: Bones_TripleSkulls_Full_FX_16
+  - first:
+      213: 4240822176260656704
+    second: Bones_TripleSkulls_Full_FX_17
+  - first:
+      213: -667422605081791020
+    second: Bones_TripleSkulls_Full_FX_18
+  - first:
+      213: 1137184529742022424
+    second: Bones_TripleSkulls_Full_FX_19
+  - first:
+      213: 3280837558154361938
+    second: Bones_TripleSkulls_Full_FX_20
+  - first:
+      213: -6328446374280030829
+    second: Bones_TripleSkulls_Full_FX_21
+  - first:
+      213: 5076138108378823206
+    second: Bones_TripleSkulls_Full_FX_22
+  - first:
+      213: 564615947364689756
+    second: Bones_TripleSkulls_Full_FX_23
+  - first:
+      213: -7850584175197733820
+    second: Bones_TripleSkulls_Full_FX_24
+  - first:
+      213: -5816259235225708327
+    second: Bones_TripleSkulls_Full_FX_25
+  - first:
+      213: -1373724466507190061
+    second: Bones_TripleSkulls_Full_FX_26
+  - first:
+      213: 7606571115797345236
+    second: Bones_TripleSkulls_Full_FX_27
+  - first:
+      213: 1715862056711261203
+    second: Bones_TripleSkulls_Full_FX_28
+  - first:
+      213: -7965540642385698365
+    second: Bones_TripleSkulls_Full_FX_29
+  - first:
+      213: 4160992915810437375
+    second: Bones_TripleSkulls_Full_FX_30
+  - first:
+      213: 1296730473407999126
+    second: Bones_TripleSkulls_Full_FX_31
+  - first:
+      213: 2005670196936473112
+    second: Bones_TripleSkulls_Full_FX_32
+  - first:
+      213: 932831773773515306
+    second: Bones_TripleSkulls_Full_FX_33
+  - first:
+      213: 6068696139750770685
+    second: Bones_TripleSkulls_Full_FX_34
+  - first:
+      213: 1850298433143116058
+    second: Bones_TripleSkulls_Full_FX_35
+  - first:
+      213: -5773738498105270849
+    second: Bones_TripleSkulls_Full_FX_36
+  - first:
+      213: 4795150941657393079
+    second: Bones_TripleSkulls_Full_FX_37
+  - first:
+      213: -2760568723589878712
+    second: Bones_TripleSkulls_Full_FX_38
+  - first:
+      213: 4109502048048196361
+    second: Bones_TripleSkulls_Full_FX_39
+  - first:
+      213: -7553276627447035759
+    second: Bones_TripleSkulls_Full_FX_40
+  - first:
+      213: -7985299085704361989
+    second: Bones_TripleSkulls_Full_FX_41
+  - first:
+      213: -3338826303762211555
+    second: Bones_TripleSkulls_Full_FX_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7091064fcf54860800000000000000
+      internalID: 7513689679852013491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7d828cafdcbd5330800000000000000
+      internalID: 3701322137626381691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e7bce8b8fe030570800000000000000
+      internalID: 8431599388784900068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a225f33c50844c0800000000000000
+      internalID: -4303183107813398001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b8a4fc91e21f830800000000000000
+      internalID: 4103111423898061724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62e5a83442de349e0800000000000000
+      internalID: -1638205099424981466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce72e967f21eae230800000000000000
+      internalID: 3668992440416479212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31855aa7096767220800000000000000
+      internalID: 2483302607446431763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9caf6aba053caa420800000000000000
+      internalID: 2642138882650864329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52b7d17558c3a5b0800000000000000
+      internalID: -5358218862333021601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_10
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5178cb686f06fce0800000000000000
+      internalID: -1371892095328423585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e90723bd0b385c10800000000000000
+      internalID: 2042447361038813672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_12
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12a36fdfb5b67c990800000000000000
+      internalID: -7365800622694188511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da3a96d558d9c15a0800000000000000
+      internalID: -6549186561980128339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb84e45893eebef0800000000000000
+      internalID: -90384699102032897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeff25aadb55a83c0800000000000000
+      internalID: -4356575416432787478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2165c87d99af290800000000000000
+      internalID: -7855797448942939416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e8d9bec4d6ada30800000000000000
+      internalID: 4240822176260656704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d5b8054da6dcb6f0800000000000000
+      internalID: -667422605081791020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_19
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817c7530e4718cf00800000000000000
+      internalID: 1137184529742022424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_20
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25cfc836060e78d20800000000000000
+      internalID: 3280837558154361938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3951ee85d87dc28a0800000000000000
+      internalID: -6328446374280030829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a3ebc07b0127640800000000000000
+      internalID: 5076138108378823206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_23
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c576131763be5d700800000000000000
+      internalID: 564615947364689756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_24
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c390e694f1d0390800000000000000
+      internalID: -7850584175197733820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d859ca9a0f784fa0800000000000000
+      internalID: -5816259235225708327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_26
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0739240ec8fece0800000000000000
+      internalID: -1373724466507190061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3f8d3e028ff8960800000000000000
+      internalID: 7606571115797345236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c88d51377ffc710800000000000000
+      internalID: 1715862056711261203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c1e9ae2df6b47190800000000000000
+      internalID: -7965540642385698365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff84cc3d201deb930800000000000000
+      internalID: 4160992915810437375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c68e4ce79eef110800000000000000
+      internalID: 1296730473407999126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a7cf8ea6295db10800000000000000
+      internalID: 2005670196936473112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_33
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ac7fe4e8512fc00800000000000000
+      internalID: 932831773773515306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_34
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df701ab5cf6583450800000000000000
+      internalID: 6068696139750770685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1115f32f949da910800000000000000
+      internalID: 1850298433143116058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd10723d6f8fdfa0800000000000000
+      internalID: -5773738498105270849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b76ed9206ccb8240800000000000000
+      internalID: 4795150941657393079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c2f5c3f5d70b9d0800000000000000
+      internalID: -2760568723589878712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_39
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b27a1f652e70930800000000000000
+      internalID: 4109502048048196361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_40
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19842c22dee5d2790800000000000000
+      internalID: -7553276627447035759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_41
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7075b1ac48e2190800000000000000
+      internalID: -7985299085704361989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bones_TripleSkulls_Full_FX_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1dd585aa2b1aa1d0800000000000000
+      internalID: -3338826303762211555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bones_TripleSkulls_Full_FX_0: 7513689679852013491
+      Bones_TripleSkulls_Full_FX_1: 3701322137626381691
+      Bones_TripleSkulls_Full_FX_10: -1371892095328423585
+      Bones_TripleSkulls_Full_FX_11: 2042447361038813672
+      Bones_TripleSkulls_Full_FX_12: -7365800622694188511
+      Bones_TripleSkulls_Full_FX_13: -6549186561980128339
+      Bones_TripleSkulls_Full_FX_14: -90384699102032897
+      Bones_TripleSkulls_Full_FX_15: -4356575416432787478
+      Bones_TripleSkulls_Full_FX_16: -7855797448942939416
+      Bones_TripleSkulls_Full_FX_17: 4240822176260656704
+      Bones_TripleSkulls_Full_FX_18: -667422605081791020
+      Bones_TripleSkulls_Full_FX_19: 1137184529742022424
+      Bones_TripleSkulls_Full_FX_2: 8431599388784900068
+      Bones_TripleSkulls_Full_FX_20: 3280837558154361938
+      Bones_TripleSkulls_Full_FX_21: -6328446374280030829
+      Bones_TripleSkulls_Full_FX_22: 5076138108378823206
+      Bones_TripleSkulls_Full_FX_23: 564615947364689756
+      Bones_TripleSkulls_Full_FX_24: -7850584175197733820
+      Bones_TripleSkulls_Full_FX_25: -5816259235225708327
+      Bones_TripleSkulls_Full_FX_26: -1373724466507190061
+      Bones_TripleSkulls_Full_FX_27: 7606571115797345236
+      Bones_TripleSkulls_Full_FX_28: 1715862056711261203
+      Bones_TripleSkulls_Full_FX_29: -7965540642385698365
+      Bones_TripleSkulls_Full_FX_3: -4303183107813398001
+      Bones_TripleSkulls_Full_FX_30: 4160992915810437375
+      Bones_TripleSkulls_Full_FX_31: 1296730473407999126
+      Bones_TripleSkulls_Full_FX_32: 2005670196936473112
+      Bones_TripleSkulls_Full_FX_33: 932831773773515306
+      Bones_TripleSkulls_Full_FX_34: 6068696139750770685
+      Bones_TripleSkulls_Full_FX_35: 1850298433143116058
+      Bones_TripleSkulls_Full_FX_36: -5773738498105270849
+      Bones_TripleSkulls_Full_FX_37: 4795150941657393079
+      Bones_TripleSkulls_Full_FX_38: -2760568723589878712
+      Bones_TripleSkulls_Full_FX_39: 4109502048048196361
+      Bones_TripleSkulls_Full_FX_4: 4103111423898061724
+      Bones_TripleSkulls_Full_FX_40: -7553276627447035759
+      Bones_TripleSkulls_Full_FX_41: -7985299085704361989
+      Bones_TripleSkulls_Full_FX_42: -3338826303762211555
+      Bones_TripleSkulls_Full_FX_5: -1638205099424981466
+      Bones_TripleSkulls_Full_FX_6: 3668992440416479212
+      Bones_TripleSkulls_Full_FX_7: 2483302607446431763
+      Bones_TripleSkulls_Full_FX_8: 2642138882650864329
+      Bones_TripleSkulls_Full_FX_9: -5358218862333021601
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
