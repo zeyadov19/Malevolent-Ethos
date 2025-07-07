@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Checkpoint : MonoBehaviour
 {
+    public bool active = false;
     [Tooltip("Bonfire Animator (must have an 'Activate' trigger).")]
     public Animator anim;
 
@@ -13,8 +14,11 @@ public class Checkpoint : MonoBehaviour
         {
             CheckpointManager.Instance.SetCheckpoint(transform.position);
             Debug.Log("Checkpoint set at: " + transform.position);
-            if (anim != null)
+            if (anim != null && !active ){
+             AudioManager.instance.PlayAt("BonFire", gameObject);
                 anim.SetTrigger("Activate");
+                active = true;
+            }
         }
     }
 }

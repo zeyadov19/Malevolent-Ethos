@@ -1277,6 +1277,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889852461}
   m_CullTransparentMesh: 1
+--- !u!1 &1964511133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1964511135}
+  - component: {fileID: 1964511134}
+  m_Layer: 0
+  m_Name: AudiManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1964511134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964511133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18385b3bc1fc6644dae23dbc91d8b7e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MMBGM
+    clip: {fileID: 8300000, guid: 7d540bbb74423944a86deaa21ffa0768, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    dopplerLevel: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    source: {fileID: 0}
+  - name: Button
+    clip: {fileID: 8300000, guid: 7c622c23bccdb834eae655733a528bab, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.45
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    dopplerLevel: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    source: {fileID: 0}
+--- !u!4 &1964511135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964511133}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 188.77509, y: 103.9697, z: -0.13211396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038343761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,3 +1572,4 @@ SceneRoots:
   - {fileID: 2038343764}
   - {fileID: 1469510875}
   - {fileID: 1552320836}
+  - {fileID: 1964511135}
