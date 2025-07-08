@@ -207,6 +207,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1059,7 +1072,45 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CastleTileset_0: -4840500396467548413
+      CastleTileset_1: 8289565905436892542
+      CastleTileset_10: -88303511001952599
+      CastleTileset_11: -5997013539584905892
+      CastleTileset_12: -5786286707310285986
+      CastleTileset_13: -1058902373184807639
+      CastleTileset_14: 3882566777582687488
+      CastleTileset_15: -2186673146631903308
+      CastleTileset_16: 5434882253566679567
+      CastleTileset_17: -498331929574047191
+      CastleTileset_18: -6369141792556550588
+      CastleTileset_19: 6024657875687452833
+      CastleTileset_2: -7516399894777489979
+      CastleTileset_20: -1700896885566098322
+      CastleTileset_21: -4214067760154479117
+      CastleTileset_22: -2601195450503932103
+      CastleTileset_23: -6612830616070562718
+      CastleTileset_24: -2224075939560640806
+      CastleTileset_25: -6254507758592689453
+      CastleTileset_26: -689134279978782148
+      CastleTileset_27: 1479955051901493892
+      CastleTileset_28: -7171713274845622731
+      CastleTileset_29: -5192160812109164679
+      CastleTileset_3: -2145065434922388605
+      CastleTileset_30: -2484055412204914671
+      CastleTileset_31: -2759849282629926105
+      CastleTileset_32: 1847742033984699299
+      CastleTileset_33: 4428231635145071877
+      CastleTileset_34: 7037187377340108654
+      CastleTileset_35: -2088706691135008074
+      CastleTileset_36: -8846432447635880097
+      CastleTileset_37: -6075405373070609792
+      CastleTileset_4: -2418057481813226123
+      CastleTileset_5: -3717314158755761433
+      CastleTileset_6: -1470795163000531383
+      CastleTileset_7: -6217055721737296480
+      CastleTileset_8: -6554403838000267905
+      CastleTileset_9: 6139662395792934072
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -219,6 +219,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1159,7 +1172,49 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CastleAnimationSheet_0: 8581286353740325398
+      CastleAnimationSheet_1: -3369078387842610834
+      CastleAnimationSheet_10: 1163058476834182409
+      CastleAnimationSheet_11: -3474348324866360898
+      CastleAnimationSheet_12: -51847014594223057
+      CastleAnimationSheet_13: -2342568824890791325
+      CastleAnimationSheet_14: -4544115617087802624
+      CastleAnimationSheet_15: 7360497419721378533
+      CastleAnimationSheet_16: 2278722258433335657
+      CastleAnimationSheet_17: 1638961388196957701
+      CastleAnimationSheet_18: -8514234743013139010
+      CastleAnimationSheet_19: -4033439283244534154
+      CastleAnimationSheet_2: -126965770866666116
+      CastleAnimationSheet_20: 1989938572852656261
+      CastleAnimationSheet_21: 6915869809057067292
+      CastleAnimationSheet_22: 8020275077709738053
+      CastleAnimationSheet_23: -4018258882403536435
+      CastleAnimationSheet_24: 1045019167755242536
+      CastleAnimationSheet_25: 7789879022664575334
+      CastleAnimationSheet_26: 3514458450067274422
+      CastleAnimationSheet_27: -6781259018780454382
+      CastleAnimationSheet_28: -2306147244225960258
+      CastleAnimationSheet_29: -2266475636169813524
+      CastleAnimationSheet_3: -4209875546723761764
+      CastleAnimationSheet_30: -8781762205654197915
+      CastleAnimationSheet_31: 2517263834264565803
+      CastleAnimationSheet_32: -4067801279750780036
+      CastleAnimationSheet_33: 4485707868685128410
+      CastleAnimationSheet_34: -3841279273546300258
+      CastleAnimationSheet_35: -3044401778695042048
+      CastleAnimationSheet_36: -7240645995505875204
+      CastleAnimationSheet_37: 4708156159310915115
+      CastleAnimationSheet_38: 1894872234220859114
+      CastleAnimationSheet_39: 7546627373635297991
+      CastleAnimationSheet_4: 6535568047057926154
+      CastleAnimationSheet_40: 6375317584706037182
+      CastleAnimationSheet_41: -4161661054900352945
+      CastleAnimationSheet_5: -8020195270111392931
+      CastleAnimationSheet_6: -8343281197158632438
+      CastleAnimationSheet_7: -8753563584939671934
+      CastleAnimationSheet_8: -875056149845371012
+      CastleAnimationSheet_9: -6992929158562781026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
