@@ -32,8 +32,10 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
     public float arrowSpeed      = 12f;
 
     [Header("Health & Death")]
-    public int   maxHealth       = 50;
-    public float deathDelay      = 1f;
+    public int maxHealth = 50;
+    public float flashDuration = 0.5f;
+    public float flashInterval = 0.05f;
+    public float deathDelay = 1f;
 
     // internals
     Animator      anim;
@@ -198,18 +200,25 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
             EnterDeath();
     }
 
-    // void OnCollisionEnter2D(Collision2D col)
-    // {
-    //     if (col.collider.CompareTag("Arrow"))  // your arrow prefab should tag itself "Arrow"
-    //     {
-    //         TakeDamage(10);                   // or pull damage from arrow component
-    //     }
-    // }
+    private IEnumerator DamageFlash()
+    {
+        float timer = 0f;
+        while (timer < flashDuration)
+        {
+            sr.color = Color.gray;
+            yield return new WaitForSeconds(flashInterval);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(flashInterval);
+            timer += flashInterval * 2f;
+        }
+        sr.color = Color.white;
+    }
 
     void EnterDeath()
     {

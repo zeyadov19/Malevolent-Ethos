@@ -34,6 +34,7 @@ public class SkullAI : MonoBehaviour, IDamageable
 
     [Header("Chase")]
     [Tooltip("Detection radius for chasing.")]
+    public bool startInChase = false;
     public float chaseRange = 5f;
     [Tooltip("Distance beyond which the slime gives up chase.")]
     public float loseRange = 10f;
@@ -56,10 +57,10 @@ public class SkullAI : MonoBehaviour, IDamageable
 
     void Start()
     {
-        anim          = GetComponent<Animator>();
-        sr            = GetComponent<SpriteRenderer>();
-        rb            = GetComponent<Rigidbody2D>();
-        col           = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         originalColor = sr.color;
 
         currentHealth = maxHealth;
@@ -67,13 +68,18 @@ public class SkullAI : MonoBehaviour, IDamageable
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        PickNewPatrolTarget();
-        PickNextStopTime();
+        if (startInChase)
+            EnterChase();
+        else
+        {
+            PickNewPatrolTarget();
+            PickNextStopTime();
+        }
     }
 
     void Update()
     {
-        if (isDead || player == null || patrolArea == null)
+        if (isDead || player == null)
             return;
 
         float distToPlayer = Vector2.Distance(transform.position, player.position);
@@ -151,7 +157,7 @@ public class SkullAI : MonoBehaviour, IDamageable
         anim.SetBool("isMoving", true);
 
         // Give up chase if player is too far
-        if (dist > loseRange)
+        if (dist > loseRange && !startInChase)
         {
             EnterPatrol();
             return;
