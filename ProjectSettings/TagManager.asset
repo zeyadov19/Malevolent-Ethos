@@ -16,7 +16,7 @@ TagManager:
   - GroundLayer
   - Enemy
   - Untouchable
-  - 
+  - SkipGround
   - SlamAttack
   - 
   - 
