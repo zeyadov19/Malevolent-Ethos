@@ -12,7 +12,7 @@ public class RisingLava : MonoBehaviour
 
     public void StartLava()
     {
-        AudioManager.instance.Play("Lava");
+        AudioManager.instance.PlayAt("Lava", gameObject);
         if (!hasStarted)
         {
             hasStarted = true;
