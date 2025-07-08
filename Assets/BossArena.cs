@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-public class ArenaCameraSwitcher : MonoBehaviour
+public class BossArena : MonoBehaviour
 {
     [Header("Virtual Cameras")]
     public CinemachineCamera mainCam;
@@ -21,23 +21,19 @@ public class ArenaCameraSwitcher : MonoBehaviour
     {
         if (!hasSwitched && other.CompareTag("Player"))
         {
-            Boss.SetActive(true);
-            BossUI.SetActive(true);
+            // Boss.SetActive(true);
+            // BossUI.SetActive(true);
 
             bossCam.Priority = mainCam.Priority + 1;
             hasSwitched = true;
-            BG.transform.localScale = new Vector3(2f, 2f, 1f);
 
-            bossStats.OnDeath.AddListener(SwitchBack);
+            //BG.transform.localScale = new Vector3(2f, 2f, 1f);
         }
     }
 
     void SwitchBack()
     {
-        // restore priorities
         bossCam.Priority = mainCam.Priority - 1;
         BG.transform.localScale = new Vector3(1f, 1f, 1f);
-        // (optional) unsubscribe if you like:
-        bossStats.OnDeath.RemoveListener(SwitchBack);
     }
 }
