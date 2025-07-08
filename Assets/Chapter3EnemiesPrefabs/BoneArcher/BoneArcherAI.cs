@@ -28,7 +28,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
 
     [Header("Attack")]
     public float attackRange     = 10f;
-    public float attackCooldown = 5f;
+    public float attackCooldown = 2f;
     public float arrowSpeed      = 12f;
 
     [Header("Health & Death")]
@@ -150,6 +150,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
         state = State.Attack;
         canAttack = false;
         rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isMoving", false);
         anim.SetTrigger("Attack");
 
         // instantiate arrow
