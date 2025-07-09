@@ -86,14 +86,14 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
 
     private void PatrolUpdate(float dist)
     {
-        anim.SetBool("isMoving", true);
+        //anim.SetBool("isMoving", true);
 
         Vector2 target = patrolPoints[currentPatrolIndex].position;
         Vector2 dir    = (target - (Vector2)transform.position).normalized;
         rb.linearVelocity    = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
-        sr.flipX       = dir.x < 0;
+        sr.flipX = dir.x < 0;
 
-        if (Vector2.Distance(transform.position, target) < 0.1f)
+        if (Vector2.Distance(transform.position, target) < 0.7f)
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
         nextIdleTime -= Time.deltaTime;
@@ -148,7 +148,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
 
         if (dist > chaseExitRange)
         {
-            anim.SetTrigger("ArmorDown");
+            //anim.SetTrigger("ArmorDown");
             state = State.Patrol;
             return;
         }
@@ -172,11 +172,9 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
         canAttack = false;
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetTrigger("Attack");
+        AudioManager.instance.PlayAt("GolemPunch", gameObject);
 
         yield return new WaitForSeconds(meleeCooldown);
-
-        if (Vector2.Distance(transform.position, player.position) <= meleeRange)
-            player.GetComponent<PlayerStats>()?.TakeDamage(meleeDamage);
 
         canAttack = true;
         state = State.Chase;
@@ -186,8 +184,9 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("GolemHurt", gameObject);
         StartCoroutine(DamageFlash());
-        anim.SetTrigger("Hurt");
+        //anim.SetTrigger("Hurt");
 
         if (currentHealth <= 0)
             StartCoroutine(DieRoutine());
@@ -215,6 +214,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
 
         rb.simulated = false;
         col.enabled = false;
+        AudioManager.instance.PlayAt("GolemDeath", gameObject);
         Destroy(gameObject, 1f);
     }
 
