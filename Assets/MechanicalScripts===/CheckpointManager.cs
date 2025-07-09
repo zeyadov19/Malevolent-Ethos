@@ -21,14 +21,21 @@ public class CheckpointManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton pattern
-        if (Instance != null && Instance != this)
+        // singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            // if (fadeImage != null)
+            //     DontDestroyOnLoad(fadeImage.canvas.gameObject);
+            // if (deathTextGroup != null)
+            //     DontDestroyOnLoad(deathTextGroup.gameObject);
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         // start invisible
         if (DeathText != null)

@@ -47,10 +47,11 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        rb            = GetComponent<Rigidbody2D>();
-        sr            = GetComponent<SpriteRenderer>();
-        animator      = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         originalColor = sr.color;
+        
     }
 
     void Start()
