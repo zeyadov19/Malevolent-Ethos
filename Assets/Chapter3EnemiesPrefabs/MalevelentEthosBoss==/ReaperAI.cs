@@ -70,6 +70,11 @@ public class ReaperAI : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        AudioManager.instance.PlayAt("ReaperStart",gameObject);
+    }
+
     void Update()
     {
         if (wipeTimerActive)
@@ -122,6 +127,7 @@ public class ReaperAI : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("isMoving", false);
         anim.SetTrigger("Attack");
+        AudioManager.instance.PlayAt("Reaperattack", gameObject);
 
         yield return new WaitForSeconds(meleeCooldown);
 

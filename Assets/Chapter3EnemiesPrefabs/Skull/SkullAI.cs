@@ -75,6 +75,7 @@ public class SkullAI : MonoBehaviour, IDamageable
             PickNewPatrolTarget();
             PickNextStopTime();
         }
+        AudioManager.instance.PlayAt("Skulls", gameObject);
     }
 
     void Update()

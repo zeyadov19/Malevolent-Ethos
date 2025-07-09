@@ -101,6 +101,7 @@ public class BonePianistAI : MonoBehaviour, IDamageable
         if (state == State.Death) return;
 
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("PianistHurt", gameObject);
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
