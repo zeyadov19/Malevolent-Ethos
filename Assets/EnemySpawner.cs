@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
             if (point != null)
                 Instantiate(ExplodingSlimea, point.position, point.rotation);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
         }
     }
 }
