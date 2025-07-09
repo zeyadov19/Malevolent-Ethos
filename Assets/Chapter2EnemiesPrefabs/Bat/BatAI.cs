@@ -167,6 +167,8 @@ public class BatAI : MonoBehaviour, IDamageable
         PickNewPatrolTarget();
         PickNextStopTime();
         state = State.Patrol;
+        AudioManager.instance.PlayAt("BatFlap", gameObject);
+        
     }
 
     private void EnterIdle()
@@ -174,16 +176,23 @@ public class BatAI : MonoBehaviour, IDamageable
         idleTimer = idleDuration;
         anim.SetTrigger("Idle");
         state = State.Idle;
+        AudioManager.instance.StopAt("BatFlap", gameObject);
     }
 
     private void EnterChase()
     {
         state = State.Chase;
+        AudioManager.instance.StopAt("BatFlap", gameObject);
+        
+        AudioManager.instance.PlayAt("BatFlap", gameObject);
+        
     }
 
     private void PickNextStopTime()
     {
         stopTimer = Random.Range(stopIntervalMin, stopIntervalMax);
+        AudioManager.instance.StopAt("BatFlap", gameObject);
+        
     }
 
     private void PickNewPatrolTarget()

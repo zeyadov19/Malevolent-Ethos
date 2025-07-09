@@ -228,6 +228,7 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         //    (make yourself untouchable during the dash)
         gameObject.layer = untouchableLayer;
         anim.SetTrigger("Attack");
+        AudioManager.instance.PlayAt("GolemPunch", gameObject);
 
         Vector2 dashDir = ((Vector2)player.position - (Vector2)transform.position).normalized;
         Vector2 start = transform.position;

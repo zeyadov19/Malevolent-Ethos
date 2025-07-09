@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class GolemBossAttack : MonoBehaviour
 {
-    public int AttackDamage = 20; 
+    public int AttackDamage = 20;
+    private Animator anim; 
+    
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,6 +18,8 @@ public class GolemBossAttack : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.TakeDamage(AttackDamage);
+                anim.SetTrigger("AAAttack");
+
             }
         }
     }
