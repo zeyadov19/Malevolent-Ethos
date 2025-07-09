@@ -99,6 +99,7 @@ public class GolemBossPhase1AI : MonoBehaviour
         canMelee   = false;
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetTrigger("Melee");
+        AudioManager.instance.PlayAt("GolemBossAttack", gameObject);
 
         yield return new WaitForSeconds(meleeCooldown);
         if (state == State.BulletHell)
@@ -119,6 +120,7 @@ public class GolemBossPhase1AI : MonoBehaviour
         anim.SetBool("isMoving", false);
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetTrigger("FireBullet");
+        AudioManager.instance.PlayAt("GolemBullet", gameObject);
         yield return new WaitForSeconds(0.2f);
 
         if (bulletPrefab != null && bulletSpawn != null)
@@ -175,7 +177,7 @@ public class GolemBossPhase1AI : MonoBehaviour
             Transform targetWP = d0 > d1 ? bulletWaypoints[0] : bulletWaypoints[1];
 
             anim.SetBool("isMoving", true);
-            while (Vector2.Distance(transform.position, targetWP.position) > 0.3f)
+            while (Vector2.Distance(transform.position, targetWP.position) > 1f)
             {
                 Vector2 dir = ((Vector2)targetWP.position - (Vector2)transform.position).normalized;
                 rb.linearVelocity = new Vector2(dir.x * runSpeed, rb.linearVelocity.y);
@@ -201,6 +203,7 @@ public class GolemBossPhase1AI : MonoBehaviour
             if (state != State.BulletHell) break;
 
             anim.SetTrigger("FireBullet");
+            AudioManager.instance.PlayAt("GolemBullet", gameObject);
             if (bulletPrefab != null && bulletSpawn != null)
             {
                 GameObject b = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
