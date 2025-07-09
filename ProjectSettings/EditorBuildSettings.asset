@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Map2 (tomp of the golems).unity
     guid: 214dbfa07b5fa824db9d0547b7117276
   - enabled: 1
-    path: Assets/Scenes/MadMalevolent Ethos DontTouch.unity
-    guid: 2666741ef73e9d644b47524c0bfbf51c
+    path: Assets/Scenes/Map3 Castle Of Malevolence.unity
+    guid: d8af18c763af1bb49945c1de78bd55fd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
