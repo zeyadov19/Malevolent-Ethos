@@ -168,6 +168,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
             var arrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.AngleAxis(angle, Vector3.forward));
             var arb = arrow.GetComponent<Rigidbody2D>();
             if (arb != null) arb.linearVelocity = dir * arrowSpeed;
+            AudioManager.instance.PlayAt("BowShot", arrowSpawn.gameObject);
         }
 
         yield return new WaitForSeconds(attackCooldown);
