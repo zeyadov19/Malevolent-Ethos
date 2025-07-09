@@ -205,6 +205,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("SkeletonHurt",gameObject);
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
@@ -231,6 +232,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
         anim.SetTrigger("Death");
         rb.simulated = false;
         col.enabled = false;
+        AudioManager.instance.PlayAt("SkeletonDeath",gameObject);
         Destroy(gameObject, deathDelay);
     }
 

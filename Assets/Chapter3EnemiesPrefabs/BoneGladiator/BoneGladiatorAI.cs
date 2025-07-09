@@ -237,6 +237,7 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         if (state == State.Block) return;
 
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("SkeletonHurt",gameObject);
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
@@ -277,6 +278,7 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         anim.SetTrigger("Death");
         rb.simulated = false;
         col.enabled = false;
+        AudioManager.instance.PlayAt("SkeletonDeath",gameObject);
         Destroy(gameObject, deathDelay);
     }
 
