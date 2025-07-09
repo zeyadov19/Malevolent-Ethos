@@ -159,8 +159,9 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.2f); // small sync delay if needed
         if (arrowPrefab && arrowSpawn)
         {
-            var arrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
             Vector2 dir = (player.position - arrowSpawn.position).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            var arrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.AngleAxis(angle, Vector3.forward));
             var arb = arrow.GetComponent<Rigidbody2D>();
             if (arb != null) arb.linearVelocity = dir * arrowSpeed;
         }

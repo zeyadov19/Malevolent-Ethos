@@ -33,6 +33,7 @@ public class ReaperAI : MonoBehaviour
     Animator     anim;
     Rigidbody2D  rb;
     SpriteRenderer sr;
+    Collider2D   coll;
 
     void Awake()
     {
@@ -40,10 +41,11 @@ public class ReaperAI : MonoBehaviour
             stats = GetComponent<ReaperStats>();
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
-        
+
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
 
     }
 
@@ -92,12 +94,14 @@ public class ReaperAI : MonoBehaviour
     public void OnSummonArmyPhase1()
     {
         StartCoroutine(SummonArmyPhase1());
+        rb.linearVelocity = Vector2.zero;
     }
 
     IEnumerator SummonArmyPhase1()
     {
         state = State.SummonPhase2;
         // Fade out sprite
+        coll.enabled = false;
         float fadeTime = vanishDuration;
         float elapsed = 0f;
         Color originalColor = Color.white;
@@ -131,12 +135,14 @@ public class ReaperAI : MonoBehaviour
         yield return new WaitForSeconds(1f);
         while (true)
         {
+            yield return new WaitForSeconds(1f);
             if (GameObject.FindGameObjectsWithTag("Summons").Length == 0)
                 break;
         }
 
         anim.SetBool("Summoning", false);
         yield return new WaitForSeconds(0.5f);
+        coll.enabled = true;
         state = State.Chase;
     }
     
