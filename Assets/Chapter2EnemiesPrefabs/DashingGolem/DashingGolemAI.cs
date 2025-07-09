@@ -103,6 +103,7 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
                 ChaseUpdate(dist);
                 break;
         }
+        //Debug.Log($"State: {state}");
     }
 
     private void PatrolUpdate(float dist)
@@ -115,7 +116,7 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         rb.linearVelocity    = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
         sr.flipX = dir.x < 0;
 
-        if (Vector2.Distance(transform.position, target) < 0.2f)
+        if (Vector2.Distance(transform.position, target) < 0.7f)
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
         // countdown to Idle
@@ -232,12 +233,13 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
 
         Vector2 dashDir = ((Vector2)player.position - (Vector2)transform.position).normalized;
         Vector2 start = transform.position;
-        while (Vector2.Distance(start, transform.position) < dashDistance)
+        float dashTimer = 0f;
+        while (Vector2.Distance(start, transform.position) < dashDistance && dashTimer < 2f)
         {
             rb.linearVelocity = dashDir * dashSpeed;
+            dashTimer += Time.deltaTime;
             yield return null;
         }
-
         // 4) Smoothly stop
         float t = 0f;
         float initialX = rb.linearVelocity.x;
