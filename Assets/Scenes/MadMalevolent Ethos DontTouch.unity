@@ -3460,9 +3460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  patrolPoints:
-  - {fileID: 2039870795}
-  - {fileID: 600757241}
+  patrolPoints: []
   detectRange: 80
   chaseLostTime: 3
   patrolSpeed: 2
@@ -7029,9 +7027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  patrolPoints:
-  - {fileID: 600757241}
-  - {fileID: 2039870795}
+  patrolPoints: []
   arrowPrefab: {fileID: 4207122169026227700, guid: dcc8e46708b70e247ae65bd7735d756c, type: 3}
   arrowSpawn: {fileID: 1853365257}
   patrolSpeed: 2
@@ -8942,7 +8938,7 @@ Transform:
   m_GameObject: {fileID: 1938491105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.25, y: -0.7000046, z: 0.08325397}
+  m_LocalPosition: {x: 0.04, y: 4.77, z: 0.08325397}
   m_LocalScale: {x: 7.0635, y: 7.0635, z: 7.0635}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9072,7 +9068,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938491105}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -9087,10 +9083,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &1938491111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9639,9 +9635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  patrolPoints:
-  - {fileID: 2039870795}
-  - {fileID: 600757241}
+  patrolPoints: []
   detectRange: 80
   chaseLostTime: 3
   patrolSpeed: 2
@@ -10226,9 +10220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  patrolPoints:
-  - {fileID: 600757241}
-  - {fileID: 2039870795}
+  patrolPoints: []
   arrowPrefab: {fileID: 4207122169026227700, guid: dcc8e46708b70e247ae65bd7735d756c, type: 3}
   arrowSpawn: {fileID: 2093327299}
   patrolSpeed: 2
