@@ -222,6 +222,7 @@ public class BatAI : MonoBehaviour, IDamageable
         if (isDead) return;
 
         currentHealth -= amount;
+        //AudioManager.instance.PlayAt("BatHurt", gameObject);
         StartCoroutine(DamageFlash());
 
         anim.SetTrigger("Hurt");

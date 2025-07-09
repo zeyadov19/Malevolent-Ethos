@@ -74,6 +74,7 @@ public class GolemBossStats : MonoBehaviour, IDamageable
 
         currentHealth -= amount;
         StartCoroutine(DamageFlash());
+        AudioManager.instance.PlayAt("GolemHurt", gameObject);
         anim.SetTrigger("Hurt");
 
         // if hit during bullet hell, exit it immediately
