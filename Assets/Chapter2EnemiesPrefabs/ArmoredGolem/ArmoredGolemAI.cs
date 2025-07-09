@@ -172,6 +172,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
         canAttack = false;
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetTrigger("Attack");
+        AudioManager.instance.PlayAt("GolemPunch", gameObject);
 
         yield return new WaitForSeconds(meleeCooldown);
 
@@ -183,6 +184,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         currentHealth -= amount;
+        AudioManager.instance.PlayAt("GolemHurt", gameObject);
         StartCoroutine(DamageFlash());
         //anim.SetTrigger("Hurt");
 
@@ -212,6 +214,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
 
         rb.simulated = false;
         col.enabled = false;
+        AudioManager.instance.PlayAt("GolemDeath", gameObject);
         Destroy(gameObject, 1f);
     }
 

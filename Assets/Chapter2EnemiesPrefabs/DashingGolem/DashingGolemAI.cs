@@ -262,7 +262,8 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
 
         currentHealth -= amount;
         StartCoroutine(DamageFlash());
-        anim.SetTrigger("Hurt");
+        //anim.SetTrigger("Hurt");
+        AudioManager.instance.PlayAt("GolemHurt", gameObject);
 
         if (currentHealth <= 0)
             StartCoroutine(DieRoutine());
@@ -294,6 +295,7 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         rb.simulated = false;
         col.enabled = false;
         // optionally destroy after a bit
+        AudioManager.instance.PlayAt("GolemDeath", gameObject);
         Destroy(gameObject, 1f);
     }
 
