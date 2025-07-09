@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Start button clicked");
         AudioManager.instance.Play("Button");
+        AudioManager.instance.Stop("MMBGM");
         SceneManager.LoadScene("Loading Scene"); // Replace with your actual scene name
     }
 
