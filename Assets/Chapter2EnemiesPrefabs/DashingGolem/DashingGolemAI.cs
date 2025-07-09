@@ -51,6 +51,8 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
 
     // internals
     private State state = State.Patrol;
+    private float dashCooldownTimer = 2f;
+    private float abandonTimer = 5f;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -111,9 +113,9 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         Vector2 target = patrolPoints[currentPatrolIndex].position;
         Vector2 dir    = (target - (Vector2)transform.position).normalized;
         rb.linearVelocity    = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
-        sr.flipX       = dir.x < 0;
+        sr.flipX = dir.x < 0;
 
-        if (Vector2.Distance(transform.position, target) < 0.1f)
+        if (Vector2.Distance(transform.position, target) < 0.2f)
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
         // countdown to Idle
@@ -172,18 +174,34 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         anim.SetBool("isMoving", true);
 
         // give up chase
-        if (dist > chaseExitRange)
+        if (dist > detectRange)
         {
-            state = State.Patrol;
+            abandonTimer -= Time.deltaTime;
+            if (abandonTimer <= 0f)
+            {
+                abandonTimer = 5f;
+                state = State.Patrol;
+                anim.SetTrigger("isMoving");
+                return;
+            }
+        }
+        else
+        {
+            abandonTimer = 5f; // reset timer if still chasing
+        }
+
+        // update dash cooldown timer
+        if (dashCooldownTimer > 0f)
+            dashCooldownTimer -= Time.deltaTime;
+
+        // dash attack if close and not on cooldown
+        if (dist <= dashRange && dashCooldownTimer <= 0f)
+        {
+            StartCoroutine(DashRoutine());
+            dashCooldownTimer = 2f;
             return;
         }
 
-        // dash attack if close
-        if (dist <= dashRange)
-        {
-            StartCoroutine(DashRoutine());
-            return;
-        }
 
         // otherwise chase horizontally
         Vector2 dir = ((Vector2)player.position - (Vector2)transform.position).normalized;
@@ -191,6 +209,8 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         vel.x = dir.x * chaseSpeed;
         rb.linearVelocity = vel;
         sr.flipX = dir.x < 0;
+        if (dist <= dashRange)
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
 
     private IEnumerator DashRoutine()
@@ -201,13 +221,13 @@ public class DashingGolemAI : MonoBehaviour, IDamageable
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
         // 2) Charge up
-        anim.SetTrigger("Charge");
+        //anim.SetTrigger("Charge");
         yield return new WaitForSeconds(dashChargeTime);
 
         // 3) Perform the dash
         //    (make yourself untouchable during the dash)
         gameObject.layer = untouchableLayer;
-        anim.SetTrigger("Dash");
+        anim.SetTrigger("Attack");
 
         Vector2 dashDir = ((Vector2)player.position - (Vector2)transform.position).normalized;
         Vector2 start = transform.position;
