@@ -908,6 +908,7 @@ MonoBehaviour:
   - Map1 (Slime Kingdom)
   - Map2 (tomp of the golems)
   - Map3 Castle Of Malevolence
+  - Credits
   mainMenuSceneName: MainMenu
 --- !u!4 &2086955977
 Transform:

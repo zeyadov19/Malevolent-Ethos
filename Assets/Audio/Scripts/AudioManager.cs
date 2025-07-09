@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // Create a persistent AudioSource for each Sound (used by Play/Stop)
         foreach (var s in sounds)

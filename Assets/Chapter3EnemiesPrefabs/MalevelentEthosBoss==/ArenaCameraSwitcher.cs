@@ -32,7 +32,7 @@ public class ArenaCameraSwitcher : MonoBehaviour
         }
     }
 
-    void SwitchBack()
+    public void SwitchBack()
     {
         // restore priorities
         bossCam.Priority = mainCam.Priority - 1;

@@ -40,7 +40,7 @@ public class LoadingController : MonoBehaviour
         }
 
         // (optional) show your loading UI here...
-
+        yield return new WaitForSeconds(4f); // simulate loading UI delay
         // 2. Async load
         var op = SceneManager.LoadSceneAsync(next);
         while (!op.isDone)

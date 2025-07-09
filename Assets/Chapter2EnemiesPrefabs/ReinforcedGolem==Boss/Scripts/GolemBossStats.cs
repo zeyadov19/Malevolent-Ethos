@@ -20,6 +20,8 @@ public class GolemBossStats : MonoBehaviour, IDamageable
     private bool usedHell300 = false;
     private bool usedHell200 = false;
     private bool usedHell100 = false;
+    public GameObject wall;
+    private GolemBossArena arena;
 
 
 
@@ -33,6 +35,7 @@ public class GolemBossStats : MonoBehaviour, IDamageable
         //col = GetComponent<Collider2D>();
         phase1AI = GetComponent<GolemBossPhase1AI>();
         phase2AI = GetComponent<GolemBossPhase2AI>();
+        arena = FindFirstObjectByType<GolemBossArena>();
     }
 
     void Update()
@@ -106,10 +109,15 @@ public class GolemBossStats : MonoBehaviour, IDamageable
     private IEnumerator DieRoutine()
     {
         anim.SetTrigger("Death");
+        AudioManager.instance.PlayAt("GolemDeath", gameObject);
+        arena.SwitchBack();
         yield return new WaitForSeconds(deathDelay);
 
         //rb.simulated = false;
         //col.enabled = false;
+        phase1AI.enabled = false;
+        phase2AI.enabled = false;
+        wall.SetActive(false);
         Destroy(gameObject, 1f);
     }
 }

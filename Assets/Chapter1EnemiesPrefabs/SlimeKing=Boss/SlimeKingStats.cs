@@ -31,12 +31,17 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
     public UnityEvent OnRampage3;
     public UnityEvent OnRampage4;
     public UnityEvent OnDeath;
+    private Animator anim;
+    public GameObject wall;
+    private ArenaCameraSwitcher arenaCameraSwitcher;
 
     void Awake()
     {
         currentHealth = maxHealth;
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
+        anim = GetComponent<Animator>();
+        arenaCameraSwitcher = FindFirstObjectByType<ArenaCameraSwitcher>();
     }
 
     public void TakeDamage(int amount)
@@ -44,7 +49,7 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
         if (currentHealth <= 0) return;
 
         currentHealth -= amount;
-        AudioManager.instance.PlayAt("SlimeHurt",gameObject);
+        AudioManager.instance.PlayAt("SlimeHurt", gameObject);
         StartCoroutine(DamageFlash());
         //Debug.Log($"Slime King took {amount} damage. Current health: {currentHealth}");
 
@@ -96,5 +101,16 @@ public class SlimeKingStats : MonoBehaviour, IDamageable
             timer += flashInterval * 2f;
         }
         sr.color = originalColor;
+    }
+
+    public void onDeath()
+    {
+        // Handle death logic here, e.g., play death animation, disable the boss, etc.
+        AudioManager.instance.PlayAt("SlimeBossDeath", gameObject);
+        anim.SetTrigger("Death");
+        arenaCameraSwitcher.SwitchBack();
+        wall.SetActive(false);
+        Destroy(gameObject,2f);
+        //Debug.Log("Slime King has been defeated!");
     }
 }

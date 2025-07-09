@@ -18,6 +18,6 @@ public static class SceneTracker
     public static void GoToLoading()
     {
         LastSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("Loading");  // make sure this matches your Loading scene’s name
+        SceneManager.LoadScene("Loading Scene");  // make sure this matches your Loading scene’s name
     }
 }

@@ -22,6 +22,7 @@ public class ReaperStats : MonoBehaviour, IDamageable
     bool wipe1Fired = false;
     bool wipe2Fired = false;
     bool finalPhaseFired = false;
+    public GameObject wall;
 
     void Awake()
     {
@@ -81,7 +82,15 @@ public class ReaperStats : MonoBehaviour, IDamageable
     IEnumerator OnDeath()
     {
         bossArena.SwitchBack();
+        reaperAI.enabled = false;
+        anim.SetTrigger("Death");
+        AudioManager.instance.PlayAt("ReaperDeath", gameObject);
+
         yield return new WaitForSeconds(0.5f);
+        wall.SetActive(false);
+        Destroy(gameObject, 1f);
+        AudioManager.instance.Stop("BossBGM");
+        AudioManager.instance.Play("BGM");
     }
 
     

@@ -23,7 +23,8 @@ public class GolemBossArena : MonoBehaviour
         {
             Boss.SetActive(true);
             BossUI.SetActive(true);
-
+            AudioManager.instance.Stop("BGM");
+            AudioManager.instance.Play("BossBGM");
             bossCam.Priority = mainCam.Priority + 1;
             hasSwitched = true;
 
@@ -34,6 +35,9 @@ public class GolemBossArena : MonoBehaviour
     public void SwitchBack()
     {
         bossCam.Priority = mainCam.Priority - 1;
+        BossUI.SetActive(false);
+        AudioManager.instance.Stop("BossBGM");
+        AudioManager.instance.Play("BGM");
         //BG.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }
