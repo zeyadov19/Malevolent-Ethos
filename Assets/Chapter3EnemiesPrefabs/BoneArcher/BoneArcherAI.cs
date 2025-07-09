@@ -155,12 +155,17 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
         anim.SetBool("isMoving", false);
         anim.SetTrigger("Attack");
 
+        // Face the player before shooting
+        float dirX = player.position.x - transform.position.x;
+        sr.flipX = dirX < 0f;
+
         // instantiate arrow
-        yield return new WaitForSeconds(0.2f); // small sync delay if needed
+        yield return new WaitForSeconds(0.5f); // small sync delay if needed
         if (arrowPrefab && arrowSpawn)
         {
-            var arrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
             Vector2 dir = (player.position - arrowSpawn.position).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            var arrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.AngleAxis(angle, Vector3.forward));
             var arb = arrow.GetComponent<Rigidbody2D>();
             if (arb != null) arb.linearVelocity = dir * arrowSpeed;
         }

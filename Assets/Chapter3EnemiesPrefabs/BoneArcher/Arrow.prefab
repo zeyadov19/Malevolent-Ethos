@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3337428416696112313}
   - component: {fileID: 4608039824982300945}
   - component: {fileID: 5151610991837865005}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.1, y: -77.7, z: 0}
-  m_LocalScale: {x: 3.607146, y: 3.607146, z: 3.607146}
+  m_LocalScale: {x: 4.1171966, y: 4.1171966, z: 4.1171966}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
