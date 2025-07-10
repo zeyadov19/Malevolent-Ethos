@@ -1637,7 +1637,7 @@ MonoBehaviour:
   - name: MMBGM
     clip: {fileID: 8300000, guid: 7d540bbb74423944a86deaa21ffa0768, type: 3}
     mixer: {fileID: 0}
-    volume: 0.6
+    volume: 0.39999998
     pitch: 1
     loop: 1
     spatialBlend: 0
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   - name: Button
     clip: {fileID: 8300000, guid: 7c622c23bccdb834eae655733a528bab, type: 3}
     mixer: {fileID: 0}
-    volume: 0.45
+    volume: 0.65
     pitch: 1
     loop: 0
     spatialBlend: 0
