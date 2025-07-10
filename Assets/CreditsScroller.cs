@@ -47,6 +47,7 @@ public class CreditsScroller2D : MonoBehaviour
     public void StartScroll()
     {
         creditsPanel.SetActive(true);
+        quitButton.gameObject.SetActive(true);
 
         // place content just below the panel bottom
         float panelHeight = creditsPanel.GetComponent<RectTransform>().rect.height;
