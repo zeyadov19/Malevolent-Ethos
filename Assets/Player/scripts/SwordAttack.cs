@@ -28,6 +28,7 @@ public class SwordAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
             Attack();
+            AudioManager.instance.PlayAt("PlayerAttack", gameObject);
         }
 
         // Handle hitbox flipping

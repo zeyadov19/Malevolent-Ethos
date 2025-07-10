@@ -23,6 +23,8 @@ public class ArenaCameraSwitcher : MonoBehaviour
         {
             Boss.SetActive(true);
             BossUI.SetActive(true);
+            AudioManager.instance.Stop("BGM");
+            AudioManager.instance.Play("BossBGM");
 
             bossCam.Priority = mainCam.Priority + 1;
             hasSwitched = true;
@@ -37,6 +39,9 @@ public class ArenaCameraSwitcher : MonoBehaviour
         // restore priorities
         bossCam.Priority = mainCam.Priority - 1;
         BG.transform.localScale = new Vector3(1f, 1f, 1f);
+        AudioManager.instance.Stop("BossBGM");
+        AudioManager.instance.Play("BGM");
+        
         // (optional) unsubscribe if you like:
         bossStats.OnDeath.RemoveListener(SwitchBack);
     }

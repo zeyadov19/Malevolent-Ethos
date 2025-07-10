@@ -1,4 +1,3 @@
-// PlayerMovement.cs
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,8 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveInput;
     private bool  isGrounded;
+    private float walkSoundTimer = 0f;
 
-    private Rigidbody2D   rb;
+    private Rigidbody2D rb;
     private Animator      anim;
     private SpriteRenderer sr;
 
@@ -47,7 +47,25 @@ public class PlayerMovement : MonoBehaviour
 
         // Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
+        {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            AudioManager.instance.PlayAt("PlayerJump", gameObject);
+        }
+
+        // Play walk sound every 0.3 seconds while moving and grounded
+        if (Mathf.Abs(moveInput) > 0.01f && isGrounded)
+        {
+            if (walkSoundTimer <= 0f)
+            {
+                AudioManager.instance.PlayAt("PlayerWalk", gameObject);
+                walkSoundTimer = 0.1f;
+            }
+        }
+        else
+        {
+            AudioManager.instance.StopAt("PlayerWalk", gameObject);
+            walkSoundTimer = 0f;
+        }
 
         // Anim
         anim.SetFloat("Speed", Mathf.Abs(moveInput));
