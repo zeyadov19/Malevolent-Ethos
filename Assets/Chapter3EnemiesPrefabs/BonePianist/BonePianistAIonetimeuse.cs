@@ -104,7 +104,6 @@ public class BonePianistAIonetimeuse : MonoBehaviour, IDamageable
         AudioManager.instance.PlayAt("PianistHurt", gameObject);
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
-        
         if (currentHealth <= 0)
             EnterDeath();
     }
