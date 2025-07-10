@@ -93,7 +93,7 @@ public class ArmoredGolemAI : MonoBehaviour, IDamageable
         rb.linearVelocity    = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
         sr.flipX = dir.x < 0;
 
-        if (Vector2.Distance(transform.position, target) < 0.7f)
+        if (Vector2.Distance(transform.position, target) < 1f)
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
         nextIdleTime -= Time.deltaTime;

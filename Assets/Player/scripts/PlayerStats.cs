@@ -38,8 +38,11 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Delay before disabling after death animation.")]
     public float deathDelay = 1f;
     [HideInInspector] public bool isDead = false;
+    
+    private PlayerMovement playerMovement;
+    private SwordAttack swordAttack;
 
-    private Rigidbody2D    rb;
+    private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator       animator;
     private Color          originalColor;
@@ -50,6 +53,8 @@ public class PlayerStats : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        swordAttack = GetComponent<SwordAttack>();
         originalColor = sr.color;
         
     }
@@ -194,6 +199,7 @@ public class PlayerStats : MonoBehaviour
     {
         isDead = true;
         animator.SetBool("isDead", true);
+        swordAttack.enabled = false;
         yield return new WaitForSeconds(deathDelay);
 
         // disable player
