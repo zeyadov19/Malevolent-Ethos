@@ -203,6 +203,6 @@ public class PlayerStats : MonoBehaviour
         rb.simulated = false;
 
         // hand off to checkpoint manager
-        CheckpointManager.Instance.HandlePlayerDeath(gameObject);
+        CheckpointManager.Instance.HandlePlayerDeath();
     }
 }

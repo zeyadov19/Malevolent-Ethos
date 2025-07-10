@@ -194,8 +194,8 @@ public class RatAI : MonoBehaviour, IDamageable
     {
         if (isDead) return;
 
-        currentHealth -= amount;
-        StartCoroutine(DamageFlash());
+        //currentHealth -= amount;
+        //StartCoroutine(DamageFlash());
 
         //Debug.Log($"Crab took {amount} damage, current health: {currentHealth}");
         if (currentHealth > 0)

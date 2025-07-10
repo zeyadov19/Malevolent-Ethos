@@ -1,6 +1,4 @@
-// CheckpointManager.cs
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
@@ -9,15 +7,24 @@ public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager Instance { get; private set; }
 
-    [Header("UI & Fade")]
+    [Header("Last Activated Bonfire")]
+    [Tooltip("The GameObject of the last bonfire you hit.")]
     public GameObject CurrentCheckPoint;
-    public TextMeshProUGUI DeathText;        // full-screen black Image
-    public CanvasGroup deathTextGroup;  // CanvasGroup containing “You Died”
-    public float      fadeDuration     = 1f;
-    public float      deathTextDuration = 1.5f;
-    public float      TextDuration     = 2f;
 
-    private Vector2 respawnPosition;    // world space of last bonfire
+    [Header("UI & Fade")]
+    public CanvasGroup deathTextGroup;    // CanvasGroup containing “You Died”
+    public TextMeshProUGUI DeathText;     // the big “You Died” text
+    public float fadeDuration      = 1f;
+    public float deathTextDuration = 1.5f;
+    public float textDuration      = 2f;
+
+    [Header("Respawn Data")]
+    [SerializeField]
+    private Vector2 respawnPosition;
+
+    // internal
+    private bool   isRespawning  = false;
+    private string sceneToReload = null;
 
     void Awake()
     {
@@ -26,10 +33,7 @@ public class CheckpointManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            // if (fadeImage != null)
-            //     DontDestroyOnLoad(fadeImage.canvas.gameObject);
-            // if (deathTextGroup != null)
-            //     DontDestroyOnLoad(deathTextGroup.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -37,32 +41,41 @@ public class CheckpointManager : MonoBehaviour
             return;
         }
 
-        // start invisible
-        if (DeathText != null)
-            DeathText.color = Color.clear;
-        if (deathTextGroup != null)
-            deathTextGroup.alpha = 0f;
+        // start fully hidden
+        if (deathTextGroup != null) deathTextGroup.alpha = 0f;
+        if (DeathText       != null) DeathText.color      = Color.clear;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     /// <summary>
-    /// Called by each bonfire when activated.
+    /// Call from your bonfire trigger. Now also stores the bonfire GO.
     /// </summary>
-    public void SetCheckpoint(Vector2 worldPos)
+    public void SetCheckpoint(Vector2 worldPos, GameObject checkpointGO)
     {
-        respawnPosition = worldPos;
+        respawnPosition   = worldPos;
+        CurrentCheckPoint = checkpointGO;
+        Debug.Log($"Checkpoint set: {checkpointGO.name} @ {worldPos}");
     }
 
     /// <summary>
-    /// Called by PlayerStats when the player finishes dying.
+    /// Call this from PlayerStats when the player dies.
     /// </summary>
-    public void HandlePlayerDeath(GameObject player)
+    public void HandlePlayerDeath()
     {
-        StartCoroutine(RespawnRoutine(player));
+        if (isRespawning) return;
+        StartCoroutine(DeathAndReload());
     }
 
-    private IEnumerator RespawnRoutine(GameObject player)
+    private IEnumerator DeathAndReload()
     {
-        // 1) Fade in “You Died”
+        isRespawning = true;
+
+        // 1) Fade in the “You Died” canvas
         float t = 0f;
         while (t < fadeDuration)
         {
@@ -74,50 +87,63 @@ public class CheckpointManager : MonoBehaviour
 
         yield return new WaitForSeconds(deathTextDuration);
 
-        //2) Fade to black
+        // 2) Fade the text itself to full red
         t = 0f;
         while (t < fadeDuration)
         {
-            DeathText.color = new Color(170, 0, 0, t / fadeDuration);
+            DeathText.color = new Color(170f/255f, 0f, 0f, t / fadeDuration);
             t += Time.deltaTime;
             yield return null;
         }
-        //DeathText.color = Color.black;
-        yield return new WaitForSeconds(TextDuration);
-        // 3) Reload scene
-        string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
-        yield return null; // wait one frame for load
 
-        // 4) Find the player in the new scene
-        player = GameObject.FindGameObjectWithTag("Player");
+        yield return new WaitForSeconds(textDuration);
+
+        // 3) Actually reload the scene
+        sceneToReload = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneToReload);
+        // OnSceneLoaded will fire next
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!isRespawning || scene.name != sceneToReload)
+            return;
+
+        // 4) Find the *new* player instance
+        var player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            // 5) Teleport to last bonfire
+            // reposition
             player.transform.position = respawnPosition;
 
-            // 6) Reset health
+            // reset HP
             var ps = player.GetComponent<PlayerStats>();
             if (ps != null)
                 ps.currentHealth = ps.maxHealth;
 
-            // 7) Re-enable movement
+            // re-enable movement
             var pm = player.GetComponent<PlayerMovement>();
             if (pm != null)
                 pm.enabled = true;
         }
 
-        // 8) Fade back in from black
-        t = fadeDuration;
+        // 5) Fade everything back out
+        StartCoroutine(FadeEverythingOut());
+    }
+
+    private IEnumerator FadeEverythingOut()
+    {
+        // fade text
+        float t = fadeDuration;
         while (t > 0f)
         {
-            DeathText.color = new Color(170, 0, 0, t / fadeDuration);
+            DeathText.color = new Color(170f/255f, 0f, 0f, t / fadeDuration);
             t -= Time.deltaTime;
             yield return null;
         }
         DeathText.color = Color.clear;
 
-        // 9) Hide “You Died”
+        // fade canvas
         t = fadeDuration;
         while (t > 0f)
         {
@@ -126,5 +152,7 @@ public class CheckpointManager : MonoBehaviour
             yield return null;
         }
         deathTextGroup.alpha = 0f;
+
+        isRespawning = false;
     }
 }
