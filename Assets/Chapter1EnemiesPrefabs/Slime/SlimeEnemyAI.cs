@@ -108,7 +108,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         sr.flipX = (moveDirection < 0f);
 
         // Advance patrol if reached
-        if (Mathf.Abs(transform.position.x - target.x) < 0.05f)
+        if (Mathf.Abs(transform.position.x - target.x) < 0.5f)
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
         // Idle timer
@@ -181,6 +181,7 @@ public class SlimeEnemyAI : MonoBehaviour, IDamageable
         stateTimer = attackDuration;
         anim.SetTrigger("Attack");
         anim.SetBool("isWalking", false);
+        AudioManager.instance.StopAt("SlimeWalk", gameObject);
         // Face player immediately
         sr.flipX = (player.position.x < transform.position.x);
         state = State.Attack;

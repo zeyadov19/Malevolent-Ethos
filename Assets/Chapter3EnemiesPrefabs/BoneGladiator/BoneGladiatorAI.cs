@@ -111,7 +111,7 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         anim.SetBool("isMoving", true);
 
         // reached point?
-        if (Mathf.Abs(transform.position.x - target.position.x) < 0.1f)
+        if (Mathf.Abs(transform.position.x - target.position.x) < 0.4f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
     }
 

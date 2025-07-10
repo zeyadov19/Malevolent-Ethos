@@ -104,7 +104,7 @@ public class BoneArcherAI : MonoBehaviour, IDamageable
         sr.flipX = (dirX < 0f);
         anim.SetBool("isMoving", true);
 
-        if (Mathf.Abs(transform.position.x - target.position.x) < 0.1f)
+        if (Mathf.Abs(transform.position.x - target.position.x) < 0.4f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
     }
 

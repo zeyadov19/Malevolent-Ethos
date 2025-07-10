@@ -126,7 +126,7 @@ public class ExplodingSlimeAI : MonoBehaviour, IDamageable
         moveDirection = Mathf.Sign(target.x - transform.position.x);
         sr.flipX = (moveDirection < 0);
 
-        if (Mathf.Abs(transform.position.x - target.x) < 0.1f)
+        if (Mathf.Abs(transform.position.x - target.x) < 0.5f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
 
         nextIdleTime -= Time.deltaTime;

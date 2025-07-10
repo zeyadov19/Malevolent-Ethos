@@ -47,10 +47,11 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        rb            = GetComponent<Rigidbody2D>();
-        sr            = GetComponent<SpriteRenderer>();
-        animator      = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         originalColor = sr.color;
+        
     }
 
     void Start()
@@ -202,6 +203,6 @@ public class PlayerStats : MonoBehaviour
         rb.simulated = false;
 
         // hand off to checkpoint manager
-        CheckpointManager.Instance.HandlePlayerDeath(gameObject);
+        CheckpointManager.Instance.HandlePlayerDeath();
     }
 }

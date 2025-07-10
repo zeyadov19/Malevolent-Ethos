@@ -3,22 +3,24 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Checkpoint : MonoBehaviour
 {
-    public bool active = false;
     [Tooltip("Bonfire Animator (must have an 'Activate' trigger).")]
     public Animator anim;
 
+    private bool active = false;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Bonfire Trigger hit by: {other.gameObject.name} (tag={other.gameObject.tag})");
-        if (other.CompareTag("Player"))
+        if (!active && other.CompareTag("Player"))
         {
-            CheckpointManager.Instance.SetCheckpoint(transform.position);
-            Debug.Log("Checkpoint set at: " + transform.position);
-            if (anim != null && !active ){
-             AudioManager.instance.PlayAt("BonFire", gameObject);
-                anim.SetTrigger("Activate");
-                active = true;
-            }
+            // 1) register both position & which Bonfire GO
+            CheckpointManager.Instance
+                .SetCheckpoint(transform.position, gameObject);
+
+            // 2) visual + audio feedback
+            if (anim != null) anim.SetTrigger("Activate");
+            AudioManager.instance.PlayAt("BonFire", gameObject);
+
+            active = true;
         }
     }
 }
