@@ -41,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2359158885228725417}
   - component: {fileID: 8311805512861345062}
-  - component: {fileID: 3970311482924277124}
   - component: {fileID: 3135087066190435216}
   - component: {fileID: 8384753237846144151}
   - component: {fileID: 293209965842681000}
+  - component: {fileID: 5283898785821575704}
   m_Layer: 7
   m_Name: BonePianist
   m_TagString: Enemy
@@ -63,7 +63,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 30.19, y: -44.67, z: -0.37813878}
   m_LocalScale: {x: 4.7919, y: 4.7919, z: 4.7919}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3766695998992689441}
   m_Father: {fileID: 0}
@@ -123,27 +123,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3970311482924277124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976642829905860927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd636a7e8c393fc489f63f8175f2e90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  summonPoint: {fileID: 3766695998992689441}
-  skullPrefab: {fileID: 5511860811285158096, guid: 80e1057eee1025449b01f574549d8efb, type: 3}
-  player: {fileID: 0}
-  detectRange: 30
-  spawnInterval: 5
-  maxHealth: 100
-  flashDuration: 0.5
-  flashInterval: 0.05
-  deathDelay: 1
 --- !u!95 &3135087066190435216
 Animator:
   serializedVersion: 7
@@ -239,3 +218,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &5283898785821575704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976642829905860927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d44d4e899a5bd4a84e54f6c3ce4372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summonPoint: {fileID: 3766695998992689441}
+  skullPrefab: {fileID: 5511860811285158096, guid: 80e1057eee1025449b01f574549d8efb, type: 3}
+  player: {fileID: 0}
+  detectRange: 10
+  spawnInterval: 5
+  maxHealth: 100
+  flashDuration: 0.5
+  flashInterval: 0.05
+  deathDelay: 1
