@@ -181,6 +181,8 @@ public class PlayerStats : MonoBehaviour
     {
         animator.SetBool("isStunned", true);
         var pm = GetComponent<PlayerMovement>();
+        var sa = GetComponent<SwordAttack>();
+        if (sa != null) sa.enabled = false;
         if (pm != null) pm.enabled = false;
         GetComponent<Rigidbody2D>().simulated = false;
         sr.color = Color.gray;
@@ -190,6 +192,8 @@ public class PlayerStats : MonoBehaviour
     {
         animator.SetBool("isStunned", false);
         var pm = GetComponent<PlayerMovement>();
+        var sa = GetComponent<SwordAttack>();
+        if (sa != null) sa.enabled = true;
         if (pm != null) pm.enabled = true;
         GetComponent<Rigidbody2D>().simulated = true;
         sr.color = originalColor;
