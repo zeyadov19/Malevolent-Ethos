@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3856879545048236848}
   - component: {fileID: 1508153617597786557}
   - component: {fileID: 7843263222269958826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletsPhas2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fa10c3c80636248adfa1db376d7bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  speed: 18
+  damage: 15
+  speed: 12
   lifetime: 5
 --- !u!95 &3856879545048236848
 Animator:
