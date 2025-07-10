@@ -37,9 +37,12 @@ public class GolemBossPhase1AI : MonoBehaviour
     public GameObject bulletPrefab;
     [Tooltip("Where bullets spawn from")]
     public Transform bulletSpawn;
+    public GameObject army1;
+    private bool firstActivation = false;
+    private bool secondActivation = false;
     
     // internals
-    private Rigidbody2D  rb;
+    private Rigidbody2D rb;
     private Animator     anim;
     private SpriteRenderer sr;
     private Collider2D   col;
@@ -146,11 +149,15 @@ public class GolemBossPhase1AI : MonoBehaviour
             canBulletAttack = true;
         }
     }
-    
+
     public void StartBulletHell()
     {
         if (state == State.BulletHell) return;
         StartCoroutine(BulletHellSequence());
+        if (firstActivation)
+            secondActivation = true;
+        else
+            firstActivation = true;
     }
 
     private IEnumerator BulletHellSequence()
@@ -187,6 +194,8 @@ public class GolemBossPhase1AI : MonoBehaviour
         }
 
         gameObject.layer = LayerMask.NameToLayer("Enemy");
+        if (secondActivation)
+            army1.SetActive(true);
         // reached waypoint – stop moving
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetBool("isMoving", false);

@@ -247,7 +247,7 @@ public class RatAI : MonoBehaviour, IDamageable
         // Did the player stomp us from above?
         float playerY = collision.transform.position.y;
         float playerX = collision.transform.position.x;
-        if (playerY > transform.position.y + 0.8f && Mathf.Abs(playerX - transform.position.x) <= 0.5f)
+        if (playerY > transform.position.y + 0.3f && Mathf.Abs(playerX - transform.position.x) <= 0.7f)
         {
             // Stomp kills crab
             //TakeDamage(25);

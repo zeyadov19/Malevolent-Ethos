@@ -37,9 +37,13 @@ public class GolemBossPhase2AI : MonoBehaviour
     public GameObject bulletPrefab;
     [Tooltip("Where bullets spawn from")]
     public Transform bulletSpawn;
+    public GameObject army2;
+    public GameObject army3;
+    private bool Army2Spawned = false;
+    private bool Army3Spawned = false;
     
     // internals
-    private Rigidbody2D  rb;
+    private Rigidbody2D rb;
     private Animator     anim;
     private SpriteRenderer sr;
     private Collider2D   col;
@@ -146,17 +150,21 @@ public class GolemBossPhase2AI : MonoBehaviour
             canBulletAttack = true;
         }
     }
-    
+
     public void StartBulletHell()
     {
         if (state == State.BulletHell) return;
         StartCoroutine(BulletHellSequence());
+        if (Army2Spawned)
+            Army3Spawned = true;
+        else
+            Army2Spawned = true;
     }
 
     private IEnumerator BulletHellSequence()
     {
         state = State.BulletHell;
-
+        
         // 1) Slam ground & stun player
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetTrigger("SlamGround");
@@ -187,6 +195,10 @@ public class GolemBossPhase2AI : MonoBehaviour
         }
 
         gameObject.layer = LayerMask.NameToLayer("Enemy");
+        if (Army2Spawned)
+            army2.SetActive(true);
+        if (Army3Spawned)
+            army3.SetActive(true);
         // reached waypoint – stop moving
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetBool("isMoving", false);

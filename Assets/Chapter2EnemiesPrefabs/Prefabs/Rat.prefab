@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7022205447027589163}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.62, y: -4.73, z: -0.37813878}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
@@ -108,15 +108,15 @@ MonoBehaviour:
   maxHealth: 100
   flashDuration: 0.5
   flashInterval: 0.05
-  contactDamage: 25
-  stompBounceForce: 20
+  contactDamage: 5
+  stompBounceForce: 26
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 2
   patrolIdleIntervalMin: 3
   patrolIdleIntervalMax: 6
-  idleDuration: 1.5
+  idleDuration: 2
   attackRange: 1.5
   attackDuration: 1
 --- !u!50 &475038515649626521
