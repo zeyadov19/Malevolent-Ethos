@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class BoneGladiatorAI : MonoBehaviour, IDamageable
 {
     private enum State { Patrol, Idle, Chase, Attack, Block, Death }
@@ -12,11 +12,10 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
     public Transform[] patrolPoints;
 
     [Header("Detection & Movement")]
-    public float detectRange = 5f;
-    private float lostTime = 0f;
-    public float chaseLostTime = 3f;
-    public float patrolSpeed = 2f;
-    public float chaseSpeed  = 4f;
+    public float detectRange     = 5f;
+    public float chaseLostTime   = 3f;
+    public float patrolSpeed     = 2f;
+    public float chaseSpeed      = 4f;
 
     [Header("Patrol Idle")]
     public float idleIntervalMin = 3f;
@@ -24,38 +23,47 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
     public float idleDuration    = 1.5f;
 
     [Header("Melee Attack")]
-    public float meleeRange    = 2f;
-    public float meleeCooldown = 1f;
-    public int   meleeDamage   = 20;
+    public float meleeRange      = 2f;
+    public float meleeCooldown   = 1f;
+    public int   meleeDamage     = 20;
 
     [Header("Block")]
-    public int   blockThreshold = 25;
-    public float blockDuration  = 10f;
+    public int   blockThreshold  = 25;
+    public float blockDuration   = 10f;
 
     [Header("Health & Death")]
-    public int   maxHealth  = 100;
-    public float flashDuration = 0.5f;
-    public float flashInterval = 0.05f;
-    public float deathDelay = 1f;
+    public int   maxHealth       = 100;
+    public float flashDuration   = 0.5f;
+    public float flashInterval   = 0.05f;
+    public float deathDelay      = 1f;
 
-    Animator      anim;
-    Rigidbody2D   rb;
-    Collider2D    col;
-    SpriteRenderer sr;
+    // components
+    private Animator      anim;
+    private Rigidbody2D   rb;
+    private BoxCollider2D boxCol;
+    private SpriteRenderer sr;
 
-    int    currentHealth;
-    bool   canMelee    = true;
-    int    patrolIndex = 0;
-    float  nextIdleTime;
-    float  idleTimer;
-    Coroutine blockRoutine;
+    // internal state
+    private int    currentHealth;
+    private bool   canMelee    = true;
+    private int    patrolIndex = 0;
+    private float  nextIdleTime;
+    private float  idleTimer;
+    private float  lostTime    = 0f;
+    private Coroutine blockRoutine;
+
+    // original collider offset (for flipping)
+    private Vector2 boxOriginalOffset;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
-        rb   = GetComponent<Rigidbody2D>();
-        col  = GetComponent<Collider2D>();
-        sr   = GetComponent<SpriteRenderer>();
+        anim   = GetComponent<Animator>();
+        rb     = GetComponent<Rigidbody2D>();
+        boxCol = GetComponent<BoxCollider2D>();
+        sr     = GetComponent<SpriteRenderer>();
+
+        // cache the offset for flipping
+        boxOriginalOffset = boxCol.offset;
     }
 
     void Start()
@@ -66,6 +74,9 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         ScheduleNextIdle();
         anim.SetBool("isMoving", true);
+
+        // ensure collider is correct initially
+        FlipCollider();
     }
 
     void Update()
@@ -76,23 +87,20 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         switch (state)
         {
             case State.Patrol: PatrolUpdate(dist); break;
-            case State.Idle: IdleUpdate(dist); break;
-            case State.Chase: ChaseUpdate(dist); break;
+            case State.Idle:   IdleUpdate(dist);   break;
+            case State.Chase:  ChaseUpdate(dist);  break;
         }
-        //Debug.Log($"State: {state}");
     }
 
-    // ————————————— PATROL —————————————
+    // ————————— PATROL —————————
     void PatrolUpdate(float dist)
     {
-        // spot player?
         if (dist <= detectRange)
         {
             EnterChase();
             return;
         }
 
-        // maybe go idle?
         nextIdleTime -= Time.deltaTime;
         if (nextIdleTime <= 0f)
         {
@@ -100,25 +108,22 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
             return;
         }
 
-        // move toward current patrol point
         if (patrolPoints.Length == 0) return;
         Transform target = patrolPoints[patrolIndex];
         float dirX = Mathf.Sign(target.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(dirX * patrolSpeed, rb.linearVelocity.y);
 
-        // face direction
         sr.flipX = (dirX < 0f);
+        FlipCollider();
         anim.SetBool("isMoving", true);
 
-        // reached point?
         if (Mathf.Abs(transform.position.x - target.position.x) < 0.4f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
     }
 
-    // ————————————— IDLE —————————————
+    // ————————— IDLE —————————
     void IdleUpdate(float dist)
     {
-        // spot player?
         if (dist <= detectRange)
         {
             EnterChase();
@@ -133,10 +138,9 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
             EnterPatrol();
     }
 
-    // ————————————— CHASE —————————————
+    // ————————— CHASE —————————
     void ChaseUpdate(float dist)
     {
-        // lost sight?
         if (dist > detectRange)
         {
             lostTime += Time.deltaTime;
@@ -148,17 +152,17 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
             }
         }
 
-        // melee attack if in range
         if (dist <= meleeRange && canMelee)
         {
             StartCoroutine(Melee());
             return;
         }
 
-        // chase player horizontally
         float dirX = Mathf.Sign(player.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(dirX * chaseSpeed, rb.linearVelocity.y);
+
         sr.flipX = (dirX < 0f);
+        FlipCollider();
         anim.SetBool("isMoving", true);
     }
 
@@ -169,16 +173,15 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         canMelee = false;
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
+
         yield return new WaitForSeconds(meleeCooldown);
-        if (state == State.Block)
-            canMelee = true;
-        else
-        {
-            canMelee = true;
+
+        canMelee = true;
+        if (state != State.Block)
             state = State.Chase;
-        }
     }
 
+    // ————————— BLOCK —————————
     void EnterBlock()
     {
         if (blockRoutine != null)
@@ -196,17 +199,17 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         while (t > 0f)
         {
             t -= Time.deltaTime;
-            // face player
             float dx = player.position.x - transform.position.x;
             sr.flipX = (dx < 0f);
+            FlipCollider();
             yield return null;
         }
 
-        // recover & resume chase
         currentHealth = maxHealth;
         EnterChase();
     }
 
+    // ————————— STATE HELPERS —————————
     void EnterPatrol()
     {
         state = State.Patrol;
@@ -224,6 +227,7 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
     void EnterChase()
     {
         state = State.Chase;
+        lostTime = 0f;
         anim.SetBool("isMoving", true);
     }
 
@@ -232,21 +236,30 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         nextIdleTime = Random.Range(idleIntervalMin, idleIntervalMax);
     }
 
+    // ————————— COLLIDER FLIP —————————
+    private void FlipCollider()
+    {
+        Vector2 o = boxOriginalOffset;
+        boxCol.offset = new Vector2(sr.flipX ? -o.x : o.x, o.y);
+    }
+
+    // ————————— DAMAGE & DEATH —————————
     public void TakeDamage(int amount)
     {
         if (state == State.Block) return;
 
         currentHealth -= amount;
-        AudioManager.instance.PlayAt("SkeletonHurt",gameObject);
+        AudioManager.instance.PlayAt("SkeletonHurt", gameObject);
         StartCoroutine(DamageFlash());
         anim.SetTrigger("Hurt");
+
         if (currentHealth <= 0)
             EnterDeath();
         else if (currentHealth <= blockThreshold)
             EnterBlock();
     }
 
-    private IEnumerator DamageFlash()
+    IEnumerator DamageFlash()
     {
         float timer = 0f;
         while (timer < flashDuration)
@@ -268,7 +281,7 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("ShadowDash"))
+        if (other.CompareTag("ShadowDash"))
             TakeDash();
     }
 
@@ -277,8 +290,8 @@ public class BoneGladiatorAI : MonoBehaviour, IDamageable
         state = State.Death;
         anim.SetTrigger("Death");
         rb.simulated = false;
-        col.enabled = false;
-        AudioManager.instance.PlayAt("SkeletonDeath",gameObject);
+        boxCol.enabled = false;
+        AudioManager.instance.PlayAt("SkeletonDeath", gameObject);
         Destroy(gameObject, deathDelay);
     }
 
